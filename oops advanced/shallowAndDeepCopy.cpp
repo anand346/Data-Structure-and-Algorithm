@@ -2,10 +2,16 @@
 #include <cstring>
 using namespace std;
 class Student{
-    int age;
-    char *name;
+    
 
     public :
+        int age;
+        char *name;
+        Student(Student const &s){
+            this->age = s.age;
+            this->name = new char[strlen(s.name) + 1];
+            strcpy(this->name,s.name);
+        }
         Student(int age , char *name){
             this->age = age;
             // this->name = name; // shallow copy
@@ -24,4 +30,8 @@ int main(){
     Student s2(20,name);
     s2.print();
     s1.print();
+    Student s3(s1);
+    s3.name[0] = 'b';
+    s3.print();
+    s1.print(); //copy constructor will always make shallow copy
 }
