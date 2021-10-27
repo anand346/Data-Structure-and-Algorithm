@@ -30,6 +30,27 @@ class Fraction{
             fnew.simplify();
             return fnew;
         }
+        Fraction& operator++(){
+            numerator = numerator + denominator;
+            return *this;
+        }
+        Fraction operator++(int){
+            Fraction fnew(numerator,denominator);
+            numerator = numerator + denominator;
+            simplify();
+            fnew.simplify();
+            return fnew;
+        }
+        Fraction& operator+=(Fraction const &f2){
+            int lcm = this->denominator * f2.denominator;
+            int x = lcm/this->denominator;
+            int y = lcm/f2.denominator;
+            int sum = this->numerator*x + f2.numerator*y;
+            this->numerator = sum;
+            this->denominator = lcm;
+            simplify();            
+            return *this;
+        }
         void simplify(){
             int gcd = 1;
             for(int i = 1; i <= this->denominator; i++){
@@ -45,12 +66,20 @@ class Fraction{
         }
 };
 int main(){
-    Fraction f1(20,4);
-    Fraction f2(40,5);
-    Fraction f3 = f1 * f2;
+    Fraction f1(10,3);
+    Fraction f2(5,2);
+    f1 += f2;
     f1.print();
     f2.print();
-    f3.print();
+    // Fraction f3 = f1 * f2;
+    // Fraction f3 = f1++;
+    // f1.print();
+    // f3.print();
+    // f2.print();
+    // f3.print();
+    // ++(++f3);
+    // f3.print();
+
     if(f1 == f1){
         cout<<"equal"<<endl;
     }else{

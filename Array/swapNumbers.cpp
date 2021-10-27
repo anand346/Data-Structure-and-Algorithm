@@ -26,3 +26,4 @@ int main(){
     cout<<"Value of a is : "<<a<<endl;
     cout<<"Value of b is : "<<b<<endl;
 }
+

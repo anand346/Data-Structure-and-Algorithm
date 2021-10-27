@@ -31,9 +31,11 @@ class Fraction{
 
             this->simplify();
         }
+        //inbuilt function for gcd int c = __gcd(a,b);
         void simplify(){
             int gcd = 1;
-            for(int i = 1; i <= this->denominator; i++){
+            int j = min(this->numerator,this->denominator);
+            for(int i = 1; i <= j; i++){
                 if(this->denominator%i == 0 && this->numerator%i == 0){
                     gcd = i;
                 }

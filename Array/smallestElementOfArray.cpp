@@ -23,3 +23,5 @@ int main(){
     cout<<"Smallest value is : "<<smallest<<endl;
     cout<<"Largest value is : "<<largest<<endl;
 }
+
+

@@ -18,7 +18,6 @@ int main(){
 
     //1.
     //strlen(string) outputs the length of a string
-    
     //  cout<<"Enter name : ";
     //  cin>>name;
     // cout<<"Length is : ";
