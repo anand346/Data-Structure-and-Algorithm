@@ -1,11 +1,11 @@
-#include <iostream>
+#include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
-void bubbleSort(int a[],int n){
+void bubbleSort(int a[], int n){
     for(int count = 1; count < n; count++){
-        int flag = 0;
+        int flag  = 0;
         for(int j = 0; j < n-1; j++){
-            if(a[j] > a[j+1]){
+            if(a[j]>a[j+1]){
                 swap(a[j],a[j+1]);
                 flag = 1;
             }
@@ -17,15 +17,16 @@ void bubbleSort(int a[],int n){
 }
 int main(){
     int n;
-    cout<<"Enter size of array : "<<endl;
+    cout<<"Enter size array : "<<endl;
     cin>>n;
     int a[n];
     cout<<"Enter elements of array : "<<endl;
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i <  n;i++){
         cin>>a[i];
     }
     bubbleSort(a,n);
-    for(int i = 0; i < n; i++){
+    for(int i = 0;i < n;i++){
         cout<<a[i]<<" ";
     }
+    getchar();
 }
