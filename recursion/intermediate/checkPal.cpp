@@ -1,7 +1,7 @@
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
-int checkPal(int a[],int s,int e){
+bool checkPal(int a[],int s,int e){
     if(s > e){
         return true;
     }

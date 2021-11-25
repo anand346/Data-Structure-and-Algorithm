@@ -40,7 +40,7 @@ public:
         return ans;
     }
     vector<int> searchRange(vector<int>& nums, int target) {
-         vector<int> v(2,-1);
+        vector<int> v(2,-1);
         int first = getFirst(nums,target);
         if(first == -1){
             return v;
@@ -52,9 +52,9 @@ public:
     }
 };
 int main(){
-    vector<int> v = {1,2,2,2,3,3,4,5,6,6};
+    vector<int> v = {1,2,2,2,3,3,4,5,6,6}; //sorted array
     Solution a ;
-    vector<int> b = a.searchRange(v,6);
+    vector<int> b = a.searchRange(v,2);
     for(int i = 0;i < b.size(); i++){
         cout<<b[i]<<" ";
     }

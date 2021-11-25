@@ -160,6 +160,66 @@ Node* deleteithNode2(Node* head, int i){ //without memory leak
    }
    return head;
 }
+int length2(Node *head){
+    if(head == NULL) return 0;
+    int smallAns = length(head->next);
+    return 1+smallAns;
+}
+bool isPresent(Node *head,int data){
+    Node *curr = head;
+    while(curr != NULL){
+        if(curr->data == data){
+            return true;
+        }
+        curr = curr->next;
+    }
+    return false;
+}
+bool isPresent2(Node *head,int data){ //recursive
+    if(head == NULL) return false;
+    if(head->data == data) return true;
+    return isPresent2(head->next,data);
+}
+int middleLL(Node* head){
+    Node* slow = head;
+    Node* fast = head->next;
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    if(fast != NULL){ //odd
+        return slow->next->data;
+    }
+    return slow->data; //even
+}
+Node* removeKthNode(Node* head,int k){
+    Node *first = head;
+    Node *second = head;
+
+    while(k--){
+        second = second->next;
+    }
+    if(second == NULL){ // if k == length of LL 
+        return first->next;
+    }
+    while(second->next != NULL){
+        first = first->next;
+        second = second->next;
+    }
+    first->next = first->next->next;
+    return head;
+}
+Node* reverseLL(Node* head){
+    Node *curr = head;
+    Node *prev = NULL;
+    while(curr != NULL){
+        Node* n = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = n;
+    }
+    return prev;
+}
 int main(){
 
     //static object of node class;
@@ -219,7 +279,17 @@ int main(){
     // Node *head = takeInput2(); //inserting at head
     print(head);
     cout<<endl;
-    head = deleteIthNode(head,1);
+    // Node *newHead = removeKthNode(head,2);
+    Node *newHead = reverseLL(head);
+    print(newHead);
+    // cout<<middleLL(head)<<endl;
+    // if(isPresent(head,3)){
+    //     cout<<"found"<<endl;
+    // }else{
+    //     cout<<"not found"<<endl;
+    // }
+    // head = deleteIthNode(head,1);
     // printIthNode(head,3);
-    print(head);
+
+    // print(head);
 }

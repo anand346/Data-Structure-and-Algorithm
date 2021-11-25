@@ -26,7 +26,9 @@ int mySearch(vector<int> a,int key){
     return -1;
 }
 int main(){
-    vector<int> a = {5,6,7,8,1,2,3,4};
+    // vector<int> a = {4,5,6,7,8,9,1,2,3}; // 1st condition true;
+    vector<int> a = {4,5,1,2,3}; //2nd condition true;
+    // vector<int> a = {1,2,3,4,5,6,7,8,9};
     int key = 8;
     int result = mySearch(a,key);
     cout<<result;

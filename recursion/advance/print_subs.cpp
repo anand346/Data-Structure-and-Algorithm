@@ -33,9 +33,9 @@ void print_subs2(char input[], char output[], int i){
 }
 
 int main(){
-    // string name = "ab";
-    // string output = "";
-    // print_subs2(name,output);
+    string name = "ab";
+    string output = "";
+    print_subs(name,output);
 
 
     // string name = "ab";
