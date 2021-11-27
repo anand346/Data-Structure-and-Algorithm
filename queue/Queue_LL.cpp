@@ -1,23 +1,25 @@
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
-template <typename T>
+template<typename T>
 class Node{
-  public:
+    public :
     T data;
     Node<T> *next;
     Node(T data){
         this->data = data;
         next = NULL;
     }
-} ;
+};
 template<typename T>
-class Stack{
+class Queue{
     Node<T> *head;
+    Node<T> *tail;
     int size;
-    public : 
-        Stack(){
+    public :
+        Queue(){
             head = NULL;
+            tail = NULL;
             size = 0;
         }
         int getSize(){
@@ -28,13 +30,18 @@ class Stack{
         }
         void push(T element){
             Node<T> *n = new Node<T>(element);
-            n->next = head;
-            head = n;
+            if(head == NULL){
+                head = n;
+                tail = n;
+            }else{
+                tail->next = n;
+                tail = n;
+            }
             size++;
         }
         void pop(){
             if(isEmpty()){
-                cout<<"Stack is empty"<<endl;
+                cout<<"Queue is empty"<<endl;
                 return ;
             }
             Node<T> *temp = head;
@@ -43,24 +50,28 @@ class Stack{
             delete temp;
             size--;
         }
-        T top(){    
+        T front(){
             if(isEmpty()){
-                cout<<"Stack is empty"<<endl;
+                cout<<"Queue is empty"<<endl;
                 return 0;
             }
             return head->data;
         }
 };
 int main(){
-    Stack<char> s1;
-    s1.push(100);
-    s1.push(102);
-    s1.push(103);
-    s1.push(104);
-    cout<<s1.top()<<endl;
-    // while(!s1.isEmpty()){
-    //     cout<<s1.top()<<endl;
-    //     s1.pop();
-    // }
-    cout<<"size is : "<<s1.getSize()<<endl;
+    Queue<int> q1;
+    q1.push(100);
+    q1.push(101);
+    q1.push(102);
+    q1.push(103);
+    q1.push(104);
+    q1.push(105);
+    cout<<q1.getSize()<<endl;
+    q1.pop();
+    q1.pop();
+    while(!q1.isEmpty()){
+        cout<<q1.front()<<endl;
+        q1.pop();
+    }
+    cout<<q1.getSize()<<endl;
 }
