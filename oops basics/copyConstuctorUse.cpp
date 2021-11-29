@@ -3,9 +3,12 @@
 using namespace std;
 int main(){
     // Student s1; //default constructor called
+    //copy constructor copies the values of properties of 1 object into another object
+    //every object has 1 default constructor and 1 default copy constructor  
+    //copy constructor or constructor are called only once at the time of creation of object
 
     Student s1(20,100); //parameterised constructor with 1 parameter is called
-    Student s2(s1);
+    Student s2(s1); //default copy constructor will be called
     Student *s3 = new Student(50,200); //default constructor is called
     Student *s4 = new Student(*s3);
     Student *s5 = new Student(s1);
@@ -42,7 +45,9 @@ int main(){
     cout<<"After copying s8 value in s2 : "<<endl;
     s2.getAge();
 
+    //destructor for static object is automatically called when scope of static object is finished
+    //for calling the destructor for dynamic object we use delete keyword
 
-    delete s8; //now destructor will called 5 times;
+    delete s8; //now destructor will called 5 times //4 times automatically for static object and 1 time for s8(dynamic ) object by delete keyword;
     return 0;
 }

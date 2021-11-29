@@ -3,8 +3,8 @@
 using namespace std;
 int partition(int a[],int s,int e){
     int pivot = a[e];
-    int i = s;
-    for(int j = s;j <= e-1;j++){
+    int i = 0;
+    for(int j = 0;j < e ;j++){
         if(a[j] < pivot){
             swap(a[j],a[i]);
             i++;
@@ -22,9 +22,9 @@ void quickSort(int a[],int s,int e){
     quickSort(a,p+1,e);
 }
 int main(){
-    int a[] = {4,2,7,8,5,2,3};
-    quickSort(a,0,6);
-    for(int i = 0; i < 7;i++){
+    int a[] = {6,3,2,1,8,7,9,5,3};
+    quickSort(a,0,8);
+    for(int i = 0;i < 9;i++){
         cout<<a[i]<<" ";
     }
 }

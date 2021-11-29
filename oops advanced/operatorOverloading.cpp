@@ -12,7 +12,7 @@ class Fraction{
         void print(){
             cout<<this->numerator<<"/"<<this->denominator<<endl;
         }
-        Fraction operator*(Fraction const &f2){
+        Fraction operator*(Fraction const &f2) const {
             int numMul = this->numerator * f2.numerator;
             int denMul = this->denominator * f2.denominator;
 
@@ -20,7 +20,7 @@ class Fraction{
             fnew.simplify();
             return fnew;
         }
-        Fraction operator+(Fraction const &f2){
+        Fraction operator+(Fraction const &f2) const{
             int lcm = this->denominator * f2.denominator;
             int x = lcm/this->denominator;
             int y = lcm/f2.denominator;
@@ -61,7 +61,7 @@ class Fraction{
             this->numerator /= gcd; 
             this->denominator /= gcd; 
         }
-        bool operator==(Fraction const &f2) const {
+        bool operator==(Fraction const &f2) const { //constant functions are those functions which doesn't change the property of current object i.e., f1;
             return (this->numerator == f2.numerator && this->denominator == f2.denominator);
         }
 };

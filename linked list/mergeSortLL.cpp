@@ -50,7 +50,7 @@ public:
         ListNode* newHead = NULL;
         if(a->val < b->val){
             newHead = a;
-            newHead ->next = mergeTwoLists(a->next, b);
+            newHead->next = mergeTwoLists(a->next, b);
         }else{
             newHead = b;
             newHead->next = mergeTwoLists(a,b->next);
@@ -66,7 +66,7 @@ public:
             slow = slow->next;
             fast = fast->next->next;
         }
-        ListNode *n = slow->next;
+        ListNode *n = slow->next; //assume that LL is odd;
         slow->next = NULL;
         
         ListNode* a = sortList(head);

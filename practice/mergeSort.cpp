@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 void mergeArrays(int x[],int y[],int a[],int s,int e){
-    int mid  = (s+e)/2;
+    int mid = (s+e)/2;
     int i = s;
     int j = mid+1;
     int k = s;
@@ -33,8 +33,8 @@ void mergeSort(int a[],int s,int e){
         return ;
     }
     int mid = (s+e)/2;
-    int x[100], y[100];
-    for(int i = 0 ;i <= mid;i++){
+    int x[100],y[100];
+    for(int i = 0;i <= mid;i++){
         x[i] = a[i];
     }
     for(int i = mid+1;i <= e;i++){
@@ -45,9 +45,9 @@ void mergeSort(int a[],int s,int e){
     mergeArrays(x,y,a,s,e);
 }
 int main(){
-    int a[] = {1,7,4,3,2,9,5,6};
-    mergeSort(a,0,7);
-    for(int i = 0;i <= 7;i++){
+    int a[] = {5,2,5,2,1,6,7,3,9,8,6};
+    mergeSort(a,0,10);
+    for(int i = 0;i < 11;i++){
         cout<<a[i]<<" ";
     }
 }
