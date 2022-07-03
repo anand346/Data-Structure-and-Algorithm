@@ -7,8 +7,8 @@ void print_subs(string input,string output){
         cout<<output<<endl;
         return;
     }
-    print_subs(input.substr(1),output + input[0]);
-    print_subs(input.substr(1),output);
+    print_subs(input.substr(1),output + input[0]); //including
+    print_subs(input.substr(1),output); //excluding
 }
 void store_subs(string input,string output,vector<string> &v){
     if(input.length() == 0){

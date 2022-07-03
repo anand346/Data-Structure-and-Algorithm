@@ -5,7 +5,7 @@ int main(){
     char str[100];
     cout<<"Enter your name : ";
     cin>>str;
-    for(int i = 0; i < strlen(str); i ++){
+    for(int i = 0; i < strlen(str); i++){
         for(int j = 0;j <= i; j++){
             cout<<str[j]<<" ";
         }

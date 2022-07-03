@@ -2,8 +2,6 @@
 #include <cstring>
 using namespace std;
 class Student{
-    
-
     public :
         int age;
         char *name;
@@ -33,5 +31,7 @@ int main(){
     Student s3(s1);
     s3.name[0] = 'b';
     s3.print();
-    s1.print(); //copy constructor will always make shallow copy
+    s1.print(); 
+    //copy constructor will always make shallow copy
+    //copy assignment operator always make a shallow copy
 }

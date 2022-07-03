@@ -2,8 +2,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define R 3
-#define C 5
-void spiralPrint(int m , int n, int matrix[][5]){
+#define C 3
+void spiralPrint(int m , int n, int matrix[][3]){
     int k = 0, l = 0;
     int last_row = m - 1, last_col = n -1;
     while(k <= last_row && l <= last_col){
@@ -31,9 +31,9 @@ void spiralPrint(int m , int n, int matrix[][5]){
 }
 int main(){
     int a[R][C] = {
-        {1,2,3,4,5},
-        {6,7,8,9,0},
-        {1,2,3,4,5}
+        {1,2,3},
+        {4,5,6},
+        {7,8,9}
     };
     spiralPrint(R,C,a);
 }

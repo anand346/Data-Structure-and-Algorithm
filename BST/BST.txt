@@ -1,0 +1,5 @@
+printTree
+hasData
+insert
+deleteData
+convertToLL

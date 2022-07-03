@@ -8,7 +8,7 @@ int mySearch(vector<int> a,int key){
         int mid = (s+e)/2;
         if(a[mid] == key){
             return mid;
-        }
+         }
         if(a[s] <= a[mid]){
             if(key >= a[s] && key <= a[mid]){
                 e = mid -1;

@@ -20,7 +20,7 @@ int main(){
     v.push_back("world");
     for(int i = 0; i < v.size() ; i++){
         sort(v[i].begin(),v[i].end());
-        cout<<v[i]<<endl;
+        cout<<v[i]<<endl; 
     }
 
 
@@ -32,7 +32,7 @@ int main(){
     // cout<<name;
 
 
-    // getline(cin,name);
+    // getline(cin,name); //take input in string
     // cout<<name<<endl;
 
 

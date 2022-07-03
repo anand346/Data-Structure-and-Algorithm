@@ -4,43 +4,35 @@ using namespace std;
 template<typename T>
 class TreeNode{
     public :
-        T data;
+        int data;
         vector<TreeNode<T>*> children;
         TreeNode(T data){
             this->data = data;
         }
-        ~TreeNode(){
-            for(int i = 0; i < children.size();i++){
-                delete children[i];
-            }
-        }
 };
-void print(TreeNode<int> *root){
-    if(root == NULL){
-        return ;
-    }
-    cout<<root->data<<" : ";
-    for(int i = 0;i < root->children.size();i++){
-       cout<<root->children[i]->data<<", ";
-    }
-    cout<<endl;
-    for(int i = 0;i < root->children.size(); i++){
-        print(root->children[i]);
-    }
-}
 TreeNode<int>* takeInput(){
     int rootData;
-    cout<<"Enter root data : "<<endl;
+    cout<<"enter root data : ";
     cin>>rootData;
     TreeNode<int> *root = new TreeNode<int>(rootData);
-    int children;
-    cout<<"Enter the no. of children for "<<root->data<<" : ";
-    cin>>children;
-    for(int i = 1;i <= children; i++){
+    cout<<"Enter no. of children : ";
+    int n ;
+    cin>>n;
+    for(int i = 1 ;i <= n; i++){
         TreeNode<int> *child = takeInput();
         root->children.push_back(child);
     }
     return root;
+}
+int minValue(TreeNode<int> *root){
+    if(root == NULL){
+        return 0;
+    }
+    int small = 0;
+    for(int i = 0;i < root->children.size();i++){
+        small = minValue(root->children[i]);
+    }
+    return min(root->data,small);
 }
 TreeNode<int>* takeInputLevelWise(){
     int rootData;
@@ -52,34 +44,34 @@ TreeNode<int>* takeInputLevelWise(){
     while(!q.empty()){
         TreeNode<int> *f = q.front();
         q.pop();
-        cout<<"Enter no. of child of "<<f->data<<" : ";
+        cout<<"enter no. of children of "<<f->data<<" : ";
         int n;
         cin>>n;
-        for(int i = 1;i <= n;i++){
-            int childData ;
-            cout<<"Enter child data of "<<i<<" child of "<<f->data<<" : ";
-            cin>>childData;
-            TreeNode<int> *child = new TreeNode<int>(childData);
+        for(int i = 1; i<= n;i++){
+            int children;
+            cout<<"Enter "<<i<<"th children of "<<f->data<<" : ";
+            cin>>children;
+            TreeNode<int> *child = new TreeNode<int>(children);
             q.push(child);
-            f->children.push_back(child); 
+            f->children.push_back(child);
         }
     }
     return root;
 }
-int countNodes(TreeNode<int> *root){
-    if(root == NULL){
-        return 0;
-    }
-    int ans = 1;
-    for(int i = 0; i < root->children.size(); i++){
-        ans += countNodes(root->children[i]);
-    }
-    return ans;
-}
-void printLevelWise(TreeNode<int> *root){
+void print(TreeNode<int> *root){
     if(root == NULL){
         return ;
     }
+    cout<<root->data<<" : ";
+    for(int i = 0; i < root->children.size(); i++){
+        cout<<root->children[i]->data<<" ,";
+    }
+    cout<<endl;
+    for(int i = 0; i < root->children.size(); i++){
+        print(root->children[i]);
+    }
+}
+void printLevelWise(TreeNode<int> *root){
     queue<TreeNode<int>*> q;
     q.push(root);
     while(!q.empty()){
@@ -93,55 +85,43 @@ void printLevelWise(TreeNode<int> *root){
         cout<<endl;
     }
 }
+int countNodes(TreeNode<int> *root){
+    if(root == NULL){
+        return 0;
+    }
+    int ans = 1;
+    for(int i = 0;i < root->children.size(); i++){
+        ans += countNodes(root->children[i]);
+    }
+    return ans;
+}
 int height(TreeNode<int> *root){
     if(root == NULL){
         return 0;
     }
     int mx = 0;
-    for(int i = 0;i < root->children.size(); i++){
-        mx = height(root->children[i]);
+    for(int i = 0;i < root->children.size() ;i++){
+        mx = max(mx,height(root->children[i]));
     }
     return mx+1;
 }
-void printAtLevelK(TreeNode<int>* root,int k){
+int countLeafNodes(TreeNode<int> *root){
     if(root == NULL){
-        return ;
+        return 0;
     }
-    if(k == 0){
-        cout<<root->data<<endl;
+    if(root->children.size() == 0){
+        return 1;
     }
+    int ans = 0;
     for(int i = 0;i < root->children.size(); i++){
-        printAtLevelK(root->children[i],k-1);
+        ans += countLeafNodes(root->children[i]);
     }
-}
-void preOrder(TreeNode<int> *root){
-    if(root == NULL){
-        return ;
-    }
-    cout<<root->data<<endl;
-    for(int i = 0;i < root->children.size();i++){
-        preOrder(root->children[i]);
-    }
-}
-void postOrder(TreeNode<int> *root){
-    if(root == NULL){
-        return ;
-    }
-    for(int i = 0;i < root->children.size(); i++){
-        postOrder(root->children[i]);
-    }
-    cout<<root->data<<endl;
+    return ans;
 }
 int main(){
     TreeNode<int> *root = takeInputLevelWise();
-    // cout<<endl;
     // printLevelWise(root);
-    // cout<<endl;
-    // cout<<countNodes(root);
-    // cout<<endl;
-    // cout<<height(root);
-    // cout<<endl;
-    // printAtLevelK(root,2);
-    postOrder(root);
+    // cout<<endl<<countNodes(root);
+    // cout<<endl<<"height is : "<<height(root);
+    cout<<"min value is : "<<minValue(root);
 }
-//1 3 2 3 4 2 5 6 1 7 1 8 0 0 0 0 

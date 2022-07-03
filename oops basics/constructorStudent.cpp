@@ -18,10 +18,10 @@ class Student{
             age = a;
             rollNumber = b;
         }
-        void setAge(int a){
+        void setAge(int a){ //setters
             age = a;
         }
-        void getAge(){
+        void getAge(){ //getters
             cout<<age<<endl;
         }
 };

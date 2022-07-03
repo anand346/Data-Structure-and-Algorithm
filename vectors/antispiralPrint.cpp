@@ -45,6 +45,5 @@ int main()
      {7,8,9}
  };
  printSpiral(a,R,C);
- 
  getchar();
 }

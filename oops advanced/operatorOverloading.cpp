@@ -34,7 +34,7 @@ class Fraction{
             numerator = numerator + denominator;
             return *this;
         }
-        Fraction operator++(int){
+        Fraction operator++(int){ //post increment
             Fraction fnew(numerator,denominator);
             numerator = numerator + denominator;
             simplify();
@@ -66,11 +66,11 @@ class Fraction{
         }
 };
 int main(){
-    Fraction f1(10,3);
-    Fraction f2(5,2);
-    f1 += f2;
-    f1.print();
-    f2.print();
+    Fraction f1(10,5);
+    Fraction f2(30,7);
+    Fraction f3 = f1 + f2;
+    f3.print();
+    // f2.print();
     // Fraction f3 = f1 * f2;
     // Fraction f3 = f1++;
     // f1.print();
@@ -80,9 +80,11 @@ int main(){
     // ++(++f3);
     // f3.print();
 
-    if(f1 == f1){
-        cout<<"equal"<<endl;
-    }else{
-        cout<<"not equal"<<endl;        
-    }
+    // if(f1 == f1){
+    //     cout<<"equal"<<endl;
+    // }else{
+    //     cout<<"not equal"<<endl;        
+    // }
+
+    //Note : we return *this reference when there is a change in "this" properties inside a method of class.
 }

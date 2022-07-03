@@ -15,7 +15,7 @@ void print(Node *head){
     Node *temp = head;
     while(temp!=NULL){
         cout<<temp->data<<" ";
-        temp = temp->next;   
+        temp = temp->next;
     }
     // cout<<endl;
     // temp = head; //for printing linked list two times store the address of head in a temp variable and use temp in loops for iterating so that first node address will always be stored in head and we can use it further for printing the linked list.
@@ -28,15 +28,15 @@ Node* takeInput(){
     int data;
     cin>>data;
     Node *head = NULL;
-    Node *tail = NULL;
+    Node *currNode = NULL;
     while(data != -1){
         Node *n = new Node(data);
         if(head == NULL){
             head = n;
-            tail = n;
+            currNode = n;
         }else{
-            tail->next = n; //inserting at tail
-            tail = n;
+            currNode->next = n; //inserting at tail
+            currNode = n;
         }
         cin>>data;
     }
@@ -83,7 +83,6 @@ void printIthNode(Node *head,int i){
         cout<<head->data<<endl;
     }else{
         cout<<"-1"<<endl;
-
     }
 }
 Node* insertAtithPos(Node *head, int i, int data){
@@ -187,10 +186,10 @@ int middleLL(Node* head){
         slow = slow->next;
         fast = fast->next->next;
     }
-    if(fast != NULL){ //odd
+    if(fast != NULL){ //even
         return slow->next->data;
     }
-    return slow->data; //even
+    return slow->data;   //odd
 }
 Node* removeKthNode(Node* head,int k){
     Node *first = head;

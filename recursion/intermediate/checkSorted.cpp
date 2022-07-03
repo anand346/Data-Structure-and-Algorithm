@@ -21,7 +21,17 @@ bool isSorted2(int a[], int n){
     bool smallSorted = isSorted2(a,n-1);
     return smallSorted;
 }
-int main(){
+bool checkSorted1(int a[],int n){
+    if(n == 0){
+        return true;
+    }
+    if(a[0] < a[1]){
+        return checkSorted(a+1,n-1);
+    }else{
+        return false;
+    }
+}
+int main(){ 
     int n = 5;
     int a[n] = {1,2,3,5,4};
     if(isSorted2(a,n)){

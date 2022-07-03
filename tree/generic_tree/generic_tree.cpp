@@ -14,7 +14,6 @@ class TreeNode{
                 delete children[i];
             }
         }
-        
 };
 void print(TreeNode<int> *root){
     if(root == NULL){
@@ -165,12 +164,12 @@ int main(){
     // root->children.push_back(t1);
     // root->children.push_back(t2);
     TreeNode<int> *root = takeInputLevelWise();
-    // printLevelWise(root);
+    printLevelWise(root);
     // cout<<"total nodes are : "<<countNodes(root)<<endl;
     // cout<<"height is : "<<height(root)<<endl;
     // cout<<"no. of leaf nodes "<<countLeafNodes(root)<<endl;
     // printAtLevelK(root,2);
-    preOrder(root);
+    // preOrder(root);
     //postOrder(root);
     //deleteTree(root);
     //delete root;

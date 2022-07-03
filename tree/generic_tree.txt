@@ -1,0 +1,11 @@
+printRecursive
+printLevelWise
+takeInputRecursive
+takeinputLevelWise
+countNode
+height
+printAtlevelK
+countLeafNode
+preOrder
+postOrder
+deleteTree

@@ -22,6 +22,13 @@
 
 #include <iostream>
 using namespace std;
+void reversePrint(int a[],int n){
+    if(n <= 0){
+        return ;
+    }
+    reversePrint(a+1,n-1);
+    cout<<a[n-1]<<" ";
+}
 int main(){
     int n;
     cout<<"Enter size of array : "<<endl;
@@ -31,8 +38,9 @@ int main(){
     for(int i =0; i < n; i++){
         cin>>a[i];
     }
-    cout<<"Printing reverse of array : "<<endl;
-    for(int i = n-1; i >= 0; i--){
-        cout<<a[i];
-    }
+    // cout<<"Printing reverse of array : "<<endl;
+    // for(int i = n-1; i >= 0; i--){
+    //     cout<<a[i];
+    // }
+    reversePrint(a,n);
 }

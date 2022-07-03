@@ -34,17 +34,12 @@ void printBTreeRecursive(BTNode<int>* root){
     printBTreeRecursive(root->right);
 }
 void printTreeLevelWise(BTNode<int> *root){
-    cout<<root->data<<" : ";
     queue<BTNode<int>*> q;
     q.push(root);
-    int lev = 0;
     while(!q.empty()){
         BTNode<int> *f = q.front();
         q.pop();
-        if(lev != 0){
-            cout<<f->data<<" : ";
-        }
-        lev++;
+        cout<<f->data<<" : ";
         cout<<f->left->data<<", "<<f->right->data;
         cout<<endl;
         q.push(f->left);

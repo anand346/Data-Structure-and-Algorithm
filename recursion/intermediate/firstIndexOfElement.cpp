@@ -48,5 +48,5 @@ int lastIndex2(int a[],int n,int x,int i){
 }
 int main(){
     int a[5] = {1,2,5,4,5};
-    cout<<"key found at : "<<lastIndex2(a,5,5,0);
+    cout<<"key found at : "<<lastIndex1(a,5,5);
 }

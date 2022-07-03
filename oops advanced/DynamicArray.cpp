@@ -1,22 +1,22 @@
 #include<iostream>
 using namespace std;
 class DynamicArray{
-    int *data;
-    int nextIndex;
-    int capacity;
+    int *data; //dynamic array to store int data;
+    int nextIndex; //position to insert
+    int capacity; //total storage
 
     public : 
-        DynamicArray(){
+        DynamicArray(){ //constructor with no parameter
             data = new int[5];
             nextIndex = 0;
             capacity = 5;
         }
-        DynamicArray(int c){
+        DynamicArray(int c){ //constructor with 1 parameter
             data = new int[c];
             capacity = c;
             nextIndex = 0;
         }
-        DynamicArray(DynamicArray const &d){
+        DynamicArray(DynamicArray const &d){ //own copy constructor
             this->nextIndex = d.nextIndex;
             this->capacity = d.capacity;
             this->data = new int[d.capacity];
@@ -24,7 +24,7 @@ class DynamicArray{
                 this->data[i] = d.data[i];
             }
         }
-        void operator=(DynamicArray const &d){
+        void operator=(DynamicArray const &d){ //own copy assignment overloading
             this->nextIndex = d.nextIndex;
             this->capacity = d.capacity;
             this->data = new int[d.capacity];
@@ -32,7 +32,7 @@ class DynamicArray{
                 this->data[i] = d.data[i];
             }
         }
-        void add(int element){
+        void add(int element){ //function with 1 parameter
             if(nextIndex == capacity){
                 int *newData = new int[2*capacity];
                 for(int i =0; i < capacity; i++){
@@ -45,7 +45,7 @@ class DynamicArray{
             data[nextIndex] = element;
             nextIndex++;
         }
-        void add(int element , int i){
+        void add(int element , int i){ //function with 2 parameter
             if(i < nextIndex){
                 data[i] = element;
             }else if(i == nextIndex){

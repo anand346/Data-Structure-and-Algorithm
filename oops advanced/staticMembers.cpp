@@ -9,8 +9,8 @@ class Student{
             totalStudents++;
         }
 
-        static getTotalStudents(){
-            return totalStudents;
+        static int getTotalStudents(){
+            return Student::totalStudents;
         }
 };
 

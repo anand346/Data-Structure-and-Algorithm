@@ -30,7 +30,7 @@ int power(int n, int x){
     return result*n;
     
 }
-int print(int n){
+int print(int n){   
     if(n <= 1){
         return 1;
     }
@@ -62,7 +62,7 @@ int sumOfDigits(int n){
     int last_digit = n%10;
     return result + last_digit;
 }
-int multiply(int m,int n){
+int multiply(int m,int n){  
     if(n == 0){
         return 0;
     }
@@ -86,7 +86,7 @@ double gSum(int n){
         return 1;
     }
     double result = gSum(n-1);
-    return result + 1.0/pow(2,n);
+    return result + 1.0/pow(2,n);   
 }
 int main(){
     // int n;

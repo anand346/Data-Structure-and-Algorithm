@@ -7,7 +7,7 @@ int main(){
     //every object has 1 default constructor and 1 default copy constructor  
     //copy constructor or constructor are called only once at the time of creation of object
 
-    Student s1(20,100); //parameterised constructor with 1 parameter is called
+    Student s1(20,100); //parameterised constructor with 2 parameter is called
     Student s2(s1); //default copy constructor will be called
     Student *s3 = new Student(50,200); //default constructor is called
     Student *s4 = new Student(*s3);

@@ -10,8 +10,4 @@ int main(){
     s1.getAge();
     s2->setAge(54);
     s2->getAge();
-
-
-
-
 }

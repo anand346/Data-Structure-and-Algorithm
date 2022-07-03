@@ -12,6 +12,7 @@ int main(){
         cout<<v[i]<<endl;
     }
     v1.empty();
+    //v1.clear();
     sort(v1.begin(),v1.end());
     v1.pop_back();
     v1.capacity();

@@ -1,145 +1,126 @@
+
+// Online IDE - Code Editor, Compiler, Interpreter
+
 #include<iostream>
-#include<bits/stdc++.h>
 using namespace std;
 class Node{
     public :
-    int data;
-    Node* next;
-    Node(int data){
-        this->data = data;
-        next = NULL;
-    }
+        int data;
+        Node *next;
+        Node(int data){
+            this->data = data;
+            next = NULL;
+        }
 };
 Node* takeInput(){
     int data;
-    Node *head = NULL;
-    Node *tail = NULL;
     cin>>data;
+    Node *headNode = NULL;
+    Node *currNode = NULL;
     while(data != -1){
         Node *n = new Node(data);
-        if(head == NULL){
-            head = n;
-            tail = n;
+        if(headNode == NULL){
+            headNode = n;
+            currNode = n;
         }else{
-            tail->next = n;
-            tail = n; //insert at tail
+            currNode->next = n; //insert at head
+            currNode = n;
         }
         cin>>data;
     }
-    return head;
+    return headNode;
 }
-void print(Node* head){
+Node* takeInput1(){
+    int data;
+    cin>>data;
+    Node *headNode = NULL;
+    Node *currNode = NULL;
+    while(data != -1){
+        Node *n = new Node(data);
+        if(headNode == NULL){
+            headNode = n;
+            currNode = n;
+        }else{
+            n->next = headNode;
+            headNode = n; //insert at head
+        }
+        cin>>data;
+    }
+    return headNode;
+}
+void print(Node *head){
+    if(head == NULL){
+        cout<<"LL is empty"<<endl;
+        return ;
+    }
     Node *temp = head;
     while(temp != NULL){
         cout<<temp->data<<" ";
         temp = temp->next;
     }
 }
-Node* takeInput2(){
-    int data;
-    Node *head = NULL;
-    Node *tail = NULL;
-    cin>>data;
-    while(data != -1){
-        Node *n = new Node(data);
-        if(head == NULL){
-            head = n;
-            tail = n;
-        }else{
-            n->next = head;
-            head = n; //insert at head
-        }
-        cin>>data;
-    }
-    return head;
-}
 int length(Node *head){
     Node *temp = head;
-    int count = 0;
-    while(temp != NULL){
-        count++;
-        temp = temp->next;
-    }
-    return count;
-}
-void printIthNode(Node* head,int i){
-    Node *temp = head;
-    int count = 1;
-    while(count <= i){
-        temp = temp->next;
-        count++;
-    }
-    if(temp){
-        cout<<temp->data<<endl;
-    }
-}
-void insertAtIthPos(Node *head,int i,int data){
-    if(head == NULL){
-        cout<<"ll is  null"<<endl;
-    }
-    int count= 1;
-    Node* temp = head;
-    while(count < i){
-        temp = temp->next;
-        count++;
-    }
-    if(temp){
-        Node *n = new Node(data);
-        n->next = temp->next;
-        temp->next = n;
-    }
-}
-void deleteIthNode(Node* head,int i){
-    if(head == NULL){
-        cout<<"LL is empty"<<endl;
-        return ;
-    }
-    int count = 1;
-    Node *temp = head;
-    while(count < i){
-        temp = temp->next;
-        count++;
-    }
-    if(temp){
-        Node *hello = temp->next;
-        temp->next = temp->next->next;
-        hello->next = NULL;
-        delete hello;
-    }
-}
-int lengthRecursive(Node *head){
-    
-    if(head == NULL){
+    if(temp == NULL){
         return 0;
     }
-    Node *temp = head;
-    int small = lengthRecursive(temp->next);
-    return small + 1;
+    int small = length(temp->next);
+    return small+1;
 }
-bool isPresent(Node *head,int target){
-    // if(head == NULL){
-    //     cout<<"LL is empty"<<endl;
-    //     return false;
-    // }
-    // Node *temp = head;
-    // while(temp != NULL){
-    //     if(temp->data == target){
-    //         return true;
-    //     }
-    //     temp = temp->next;
-    // }
-    // return false;
+void printIthNode(Node *head,int i){
+    if(head == NULL){
+        return ;
+    }
+    Node *temp = head;
+    while(i--){
+        temp = temp->next;
+    }
+    cout<<temp->data;
+}
+Node* insertAtIthPos(Node* head,int i,int data){
+    if(head == NULL){
+        return NULL;
+    }
+    Node *temp = head;
+    int count = 1;
+    while(count < i){
+        temp = temp->next;
+        count++;
+    }
+    Node *newNode = new Node(data);
+    newNode->next = temp->next;
+    temp->next = newNode;
+    return head;
+}
+Node* deleteIthNode(Node *head,int i){
+    if(head == NULL){
+        return NULL;
+    }
+    int count = 1;
+    Node *temp = head;
+    while(count < i){
+        temp = temp->next;
+        count++;
+    }
+    Node *toDelete = temp->next;
+    temp->next = temp->next->next;
+    toDelete->next = NULL;
+    delete toDelete;
+    return head;
+}
+bool isPresent(Node *head, int element){
     if(head == NULL){
         return false;
     }
-    if(head->data == target){
-        return true;
-    }
     Node *temp = head;
-    bool small = isPresent(temp->next,target);
-    return small;
+    while(temp){
+        if(temp->data == element){
+            return true;
+        }
+        temp = temp->next;
+    }
 }
-int middle(Node *head){
+int middleLL(Node *head){
     Node *slow = head;
     Node *fast = head->next;
     while(fast && fast->next){
@@ -147,31 +128,33 @@ int middle(Node *head){
         fast = fast->next->next;
     }
     if(fast){
-        return slow->next->data; 
+        return slow->next->data;
     }else{
         return slow->data;
     }
 }
 Node* removeKthNode(Node *head,int k){
+    if(head == NULL){
+        return NULL;
+    }
     Node *first = head;
     Node *second = head;
-
     while(k--){
         second = second->next;
-    }
-    if(second == NULL){ // if k == length of LL 
-        return first->next;
     }
     while(second->next != NULL){
         first = first->next;
         second = second->next;
     }
+    Node *temp = first->next;
     first->next = first->next->next;
+    temp->next = NULL;
+    delete temp;
     return head;
 }
 Node* reverseLL(Node *head){
     if(head == NULL){
-        return 0;
+        return NULL;
     }
     Node *curr = head;
     Node *prev = NULL;
@@ -183,29 +166,22 @@ Node* reverseLL(Node *head){
     }
     return prev;
 }
-int main(){
+int main()
+{
+    cout<<"Enter your linked list : ";
     Node *head = takeInput();
-    // cout<<head;
-    print(head);
-    cout<<endl<<length(head);
-    cout<<endl;
-    printIthNode(head,3);
-    cout<<endl;
-    insertAtIthPos(head,3,6);
-    print(head);
-    cout<<endl;
-    deleteIthNode(head,3);
-    print(head);
-    cout<<endl;
-    cout<<lengthRecursive(head);
-    cout<<endl;
-    cout<<isPresent(head,10);
-    cout<<endl;
-    cout<<middle(head);
-    Node *newHead = removeKthNode(head,2);
-    cout<<endl;
+    //print(head);
+    // cout<<endl<<"Length is : "<<length(head);
+    // cout<<endl;printIthNode(head,4);
+    //Node *newHead = insertAtIthPos(head,3,10);
+    // Node *newHead = deleteIthNode(head,3);
+    // print(newHead);
+    // cout<<endl<<isPresent(head,12);
+    // cout<<endl<<middleLL(head);
+    // Node *newHead = removeKthNode(head,3);
+    // cout<<endl;
+    // print(newHead);
+    Node *newHead = reverseLL(head);
     print(newHead);
-    Node *newHead1 = reverseLL(newHead);
-    cout<<endl;
-    print(newHead1);
+    return 0;
 }

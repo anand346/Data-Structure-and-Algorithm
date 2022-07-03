@@ -13,20 +13,21 @@ void printSteps(int n,char s,char d,char h){
     }
     printSteps(n-1,s,h,d);
     cout<<"moving disk "<<n<<" from "<<s<<" to "<<d<<endl;
-    printSteps(n-1,h,d,s);
+    printSteps(n-1,h,d,s);  
 }
-// void printSteps1(int n,char s,char h,char d){
-//     if(n == 0){
-//         return ;
-//     }
-//     printSteps1(n-1,s,h,d);
-//     cout<<"moving disk "<<n<<" from "<<s<<" to "<<d<<endl;
-//     printSteps1(n-1,h,d,s);
-// }
+void printSteps1(int n,char s,char h,char d){
+    if(n == 0){
+        return ;
+    }
+    printSteps1(n-1,s,d,h);
+    cout<<"moving disk "<<n<<" from "<<s<<" to "<<d<<endl;
+    printSteps1(n-1,h,s,d);
+}
 int main(){
     int n;
     cin>>n;
     cout<<toh(n)<<endl;
-    printSteps(n,'A','C','B');
+    //printSteps(n,'A','C','B');
+    printSteps1(n,'A','B','C');
     cout<<endl<<endl;
 }
