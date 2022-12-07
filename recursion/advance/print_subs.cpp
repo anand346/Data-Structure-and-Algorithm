@@ -45,7 +45,7 @@ int main(){
     // for(int i = 0; i < v.size(); i++){
     //     cout<<v[i]<<endl;
     // }
-
+    
     // char name[100] = "ab";
     // char output[100];
     // store_subs2(name,output,0);

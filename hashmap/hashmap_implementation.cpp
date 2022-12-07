@@ -36,7 +36,7 @@ class mymap{
             }
             return hashcode%numBuckets;
         }
-        void rehash(){
+         void rehash(){
             MapNode<V>** temp = buckets;
             buckets = new MapNode<V>*[2*numBuckets];
             for(int i = 0;i < 2*numBuckets;i++){

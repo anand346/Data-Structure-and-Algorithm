@@ -1,0 +1,5 @@
+getSize
+isEmpty
+push
+pop
+front

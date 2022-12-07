@@ -1,0 +1,29 @@
+1. what is the best online judge for beginners to practice
+2. what is the best approach for beginners to become a red coder (in terms of learning and practicing)
+3. how to practice CP (topic wise or difficulty wise) for beginners
+4. is it necessary to have more than 1 online judge
+
+
+
+1. make list of topics 
+2. first solve all topics problems
+3. after solve all topics problems go for random problem
+4. learn and practice daily constant amount of problems .
+5. check for different solutions of a problem (for best approach of solving them)
+6. learn diff algorithms frequently used in that data structure
+7. try to understand which alogrithm you can use in this problem
+8. read books for different topics and diff algorithms .
+
+
+https://workat.tech/problem-solving/article/competitive-programming-complete-roadmap-from-scratch-sbcrmnxb1sfg
+
+https://docs.google.com/document/d/1JgXpiUzczeUenZT5_zgs2Tuex7woW5D2tXIn1zXNsJY/edit
+
+https://drive.google.com/file/d/1J2x8pIYQ3MXANgvzOgBciWd3d79j_Exa/view
+
+(book) Introduction to Algorithms By Thomas H .Cormen, Charles E. Leiserson: 
+
+top 50 questions GFG (of a topic)
+interviewbit question of a topic (all difficulties)
+top interview leetcode question (all difficulties of a topic)
+div2 A,B,C,D,E,F (codeforces) [div1 > div2 > div3] [F > E > D > C > B > A]

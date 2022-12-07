@@ -36,11 +36,14 @@ int removeDuplicates2(string &input){
     return strptr+1;
 }
 int main(){
-    char name[] = "aaavvvccc";
+    // char name[] = "aaavvvccc";
+    string name = "aaavvvccc";
     string hello = "mississippi";
     int p = removeDuplicates2(hello);
     for(int i = 0;i < p;i++){
         cout<<hello[i];
     }
     // cout<<name;
+    // string out = removeDuplicates1(name);
+    // cout<<out;
 }

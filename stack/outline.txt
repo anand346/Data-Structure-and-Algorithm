@@ -1,0 +1,5 @@
+size
+empty
+pop
+push
+top

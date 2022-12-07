@@ -42,7 +42,7 @@ Node* takeInput(){
     }
     return head;
 }
-Node* takeInput2(){
+Node* takeInput2(){ //inserting at head
     int data;
     cin>>data;
     Node *head = NULL;

@@ -3,6 +3,25 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+string sortLowercase(string s) {
+    int charExist[26] = {0};
+    for (int i = 0; i < s.size(); i++) {
+        charExist[s[i] - 'a']++;
+    }
+    string res;
+    int j = 0;
+    while (j < 26) {
+        if (charExist[j] == 0) {
+            j++;
+        }
+        else {
+            res.push_back(j + 'a');
+            charExist[j]--;
+        }
+    }
+    return res;
+}
+
 int main(){
     string a = "abc";
     cout<<a<<endl;
