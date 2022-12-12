@@ -12649,3 +12649,437 @@ string firstNonRepeating(string s){
     }
     return ans;
 }
+
+
+class TreeNode{
+
+    public :
+        int data;
+        vector<TreeNode<T>*> children;
+
+        TreeNode(int data){
+            this->data = data;
+        }
+         
+        ~TreeNode(){
+            for(int i = 0;i < children.size();i++){
+                delete children[i];
+            }
+        }
+}
+
+void print(TreeNode* root){
+    if(root == NULL){
+        return ;
+    }
+
+    cout<<root->data<<" : ";
+    for(int i = 0;i < root->children.size();i++){
+        cout<<children[i]->data<<" ";
+    }
+    cout<<endl;
+    for(int i = 0;i < children.size();i++){
+        print(children[i]);
+    }
+}
+
+TreeNode<T>* takeInput(){
+    int rootData;
+    cout<<"Enter root data : ";
+    cin>>rootData;
+    TreeNode<int>* root = new TreeNode<int>(rootData);
+    cout<<"Enter no. of child : ";
+    int n;
+    cin>>n;
+    for(int i = 0;i < n;i++){
+        TreeNode<int>* child = takeInput();
+        root->children.push_back(child);
+    }
+
+    return root;
+
+}
+
+
+
+TreeNode<int>* takeInputLevelWise(){
+
+    int rootData;
+    cout<<"Enter root data : ";
+    cin>>rootData;
+
+    TreeNode<int>* root = new TreeNode<int>(rootData);
+    queue<TreeNode<int>*> q;
+    q.push(root);
+    while(!q.empty()){
+        TreeNode<int> *front = q.front();
+        q.pop();
+        cout<<"Enter no. of child of "<<f->data;
+        int n;
+        cin>>n;
+        for(int i = 1;i <= n;i++){
+            cout<<"Enter "<<i<<"th child of "<<front->data;
+            int child ;
+            cin>>child;
+            TreeNode<int>* childP = new TreeNode<int>(child);
+            front->children.push_back(childP);
+            q.push(childP);
+        }
+    }
+
+    return root;
+}
+
+
+int countNodes(TreeNode<int>* root){
+
+    if(root == NULL){
+        return -1;
+    }
+
+    int ans = 1;
+    for(int i = 0;i < root->children.size();i++){
+        ans += countNodes(root->children[i]);
+    }
+    return ans;
+}
+
+
+void printLevelWise(TreeNode<int>* root){
+    if(root == NULL) return ;
+
+    queue<TreeNode<int>*> q;
+    q.push(root);
+    while(!q.empty()){
+        TreeNode<int> *front = q.front();
+        q.pop();
+        cout<<front->data<<" : ";
+        for(int i = 0;i < root->children.size();i++){
+            cout<<front->children[i]->data<<" ";
+            q.push(front->children[i]);
+        }
+        cout<<endl;
+    }
+}
+
+class TreeNode{
+
+    public :
+        int data;
+        vector<TreeNode*> children;
+
+        TreeNode(int data){
+            this->data = data;
+        }
+
+        ~TreeNode(){
+            for(int i = 0;i < children.size();i++){
+                delete children[i];
+            }
+        }
+}
+
+
+void printRecursive(TreeNode* root){
+
+
+    if(root == NULL){
+        return ;
+    }
+    cout<<root->data<<" : ";
+    for(int i = 0;i < root->children.size();i++){
+        cout<<root->children[i]->data<<" ";
+    }
+    cout<<endl;
+    for(int i = 0;i < root->children.size();i++){
+        printRecursive(root->children[i]);
+    }
+}
+
+
+TreeNode* takeInput(){
+    int rootData;
+    cout<<"Enter data : ";
+    cin>>rootData;
+
+    TreeNode* root = new TreeNode(rootData);
+    cout<<"Enter children size : ";
+    int n;
+    cin>>n;
+    for(int i = 0;i < n;i++){
+        TreeNode* child = takeInput();
+        root->children.push_back(child);
+    }
+
+    return root;
+}
+
+TreeNode* takeInput(){
+    int rootData;
+    cout<<rootData;
+
+    TreeNode* root = new TreeNode(rootData);
+    queue<TreeNode*> q;
+
+    q.push(root);
+
+    while(!q.empty()){
+        TreeNode* f = q.front();
+        q.pop();
+        cout<<"Enter no. of children of "<<f->data;
+        int n;
+        cin>>n;
+        int childData;
+        for(int i = 0;i < n;i++){
+            cout<<"Enter "<<i<<"th child : ";
+            cin>>childData;
+            TreeNode* child = new TreeNode(childData);
+            root->children.push_back(child);
+            q.push(child);
+        }
+    }
+
+    return root;
+}
+
+
+int countNodes(TreeNode* root){
+    if(root == NULL){
+        return 0;
+    }
+
+    int ans = 1;
+    for(int i = 0;i < root->children.size();i++){
+        ans += countNodes(root->children[i]);
+    }
+
+    return ans;
+}
+
+void printLevelWise(TreeNode* root){
+    if(root == NULL){
+        return ;
+    }
+    queue<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()){
+        TreeNode* f = q.front();
+        q.pop();
+
+        cout<<f->data<<" : ";
+        for(int i = 0;i < f->children.size();i++){
+            cout<<f->children[i]->data<<" ";
+            q.push(f->children[i]);
+        }
+        cout<<endl;
+        
+    }
+    return ;
+}
+
+
+int height(TreeNode* root){
+
+    if(root == NULL) return 0;
+
+    int mx = 0;
+    for(int i = 0;i < root->children.size();i++){
+        mx = max(mx,height(root->children[i]));
+    }
+    return mx+1;
+}
+
+void printAtLevelK(TreeNode* root , int k){
+
+    if(root == NULL) return ;
+
+    if(k == 0){
+        cout<<root->data<<" ";
+        return; 
+    }
+
+    for(int i = 0;i < root->children.size();i++){
+        printAtLevelK(root->children[i],k--);
+    }
+}
+
+
+int countLeafNode(TreeNode* root){
+
+    if(root == NULL){
+        return -1;
+    }
+
+    if(root->children.size() == 0){
+        return 1;
+    }
+    int ans = 0;
+
+    for(int i = 0;i < root->children.size();i++){
+        ans += countLeafNode(root->children[i]);
+    }
+
+    return ans;
+
+}
+
+void preOrder(TreeNode* root){
+    if(root == NULL) return ;
+
+    cout<<root->data<<endl;
+    for(int i = 0;i < root->children.size();i++){
+        preOrder(root->children[i]);
+    }
+
+}
+
+void postOrder(TreeNode* root){
+    if(root == NULL) return ;
+
+    for(int i = 0;i < root->children.size();i++){
+        postOrder(root->children[i]);
+    }
+
+    cout<<roo->data;
+}
+
+void deleteTree(TreeNode* root){
+    if(root == NULL) return;
+
+    for(int i = 0;i < root->children.size();i++){
+        delete root->children[i];
+
+    }
+    delete root;
+}
+
+Node* connect(Node* root){
+    if(!root) return NULL;
+
+    queue<Node*> q;
+    q.push(root);
+    while(!q.empty()){
+        int l = q.size();
+        for(int i = 0;i < l;i++ ){
+            Node* f = q.front();
+            if(i == l-1) f->next = NULL
+            else f->next = q.front();
+
+            if(f->left) q.push(f->left);
+            if(f->right) q.push(f->right);
+        }
+    }
+
+    return root;
+}
+
+
+Node* copyRandomList(Node* head){
+
+    if(head == NULL) return NULL;
+
+    map<Node*,Node*> mp;
+    Node* original = head;
+    while(original != NULL){
+        Node* copy = new Node(head->val);
+        mp[original] = copy
+        original = original->next;
+    }
+
+    original = head;
+
+    while(original != head){
+        mp[original]->next = mp[original->next];
+        mp[original]->random = mp[original->random];
+        original = original->next;
+    }
+
+    return mp[head];
+}
+
+
+ListNode* mergeKLists(vector<ListNode*> lists){
+
+    if(lists.size() == 0){
+        return NULL;
+    }
+
+    vector<pair<int,ListNode*>> arr;
+    for(int i = 0;i < lists.size();i++){
+
+        ListNode* curr_list = lists[i];
+
+        while(curr_list){
+            arr.push_back({curr_list->val,curr_list});
+            curr_list = curr_list->next;
+        }
+    }
+
+    for(int i = 0;i < arr.size();i++){
+        arr[i].second->next = arr[i+1].second;
+    }
+
+    arr[arr.size()-1].second->next = NULL;
+    return arr[0].second;
+}
+
+
+ListNode* swapNode(ListNode* head){
+
+    if(head == NULL || head->next == NULL) return NULL;
+
+    ListNode* temp = head->next;
+    head->next = swapNode(head->next->next);
+
+    temp->next = head;
+    return temp;
+}
+
+
+ListNode* findRightMost(ListNode* root){
+    if(root->right == NULL) return root;
+    return findRightMost(root->right);
+}
+
+ListNode* treeToLL(ListNode* root){
+    if(root == NULL ) return NULL;
+
+    ListNode* nextRight;
+    ListNode* rightMost;
+
+    while(root){
+        if(root->left){
+
+            rightMost = findRightMost(root->left);
+            nextRight = root->right;
+            root->right = root->left;
+            rightMost->right = nextRight;
+        }
+
+        root = root->right;
+    }
+
+    return root;
+}
+
+ListNode* returnCycleNode(ListNode* head){
+
+    if(head == NULL) return NULL;
+
+    ListNode* fast = head->next;
+    ListNode* slow = head;
+
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next;
+    }
+
+    if(!fast && !fast->next) return NULL;
+
+    while(head != slow){
+        head = head->next;
+        slow = slow->next;
+    }
+
+    return head;
+}
