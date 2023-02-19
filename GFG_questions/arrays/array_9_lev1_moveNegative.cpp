@@ -7,11 +7,36 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-void mySwap(int arr[],int s,int e){
+
+
+
+void arrange(int a[], int n) { //arranging negative on the left side
+    int negi = 0;
+    int posi = n - 1;
+
+    while (negi <= posi) {
+        if (a[negi] < 0 && a[posi] < 0) {
+            negi++;
+        }
+        else if (a[negi] > 0 && a[posi] < 0) {
+            swap(a[negi], a[posi]);
+            negi++;
+            posi--;
+        }
+        else if (a[negi] > 0 && a[posi] > 0) posi--;
+        else {
+            negi++;
+            posi--;
+        }
+    }
+}
+
+void mySwap(int arr[],int s,int e){ //arranging negative on the right side
     for(int i = s;i <= e-1;i++){
         swap(arr[i],arr[i+1]);
     }
 }
+
 void segregateElements(int arr[],int n){
         // Your code goes here
         // int s = n-1;
@@ -24,7 +49,7 @@ void segregateElements(int arr[],int n){
         //     }
         // }
 
-        vector<int> hel;
+        vector<int> hel; // arranging negative on the right side
         for(int i= 0;i < n;i++){
             if(arr[i] > 0){
                 hel.push_back(arr[i]);

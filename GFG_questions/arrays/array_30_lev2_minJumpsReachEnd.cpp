@@ -25,8 +25,8 @@ int minJumps(int arr[], int n){
     int jumps = 1;
     int steps = arr[0];
     int maxReach = arr[0];
-    int i = 1;
-    for(i = 1;i < n;i++){
+
+    for(int i = 1;i < n;i++){
         if(i == n-1){
             return jumps;
         }
@@ -34,6 +34,7 @@ int minJumps(int arr[], int n){
         maxReach = max(maxReach,arr[i]+i);
         steps--;
         if(steps == 0){
+            // cout<<"steps 0 "<<maxReach-i<<endl;
             jumps++;
             if(i >= maxReach){
                 return -1;
@@ -45,6 +46,6 @@ int minJumps(int arr[], int n){
 }
 int main(){
     int n = 11 ;
-    int arr[] = {1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9} ;
+    int arr[] = {1, 3, 0, 5, 0, 2, 6, 7, 6, 8, 9} ;
     cout<<minJumps(arr,n);
 }

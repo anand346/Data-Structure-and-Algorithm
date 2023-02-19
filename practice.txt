@@ -13116,3 +13116,1051 @@ ListNode* reverseKGroup(ListNode* head, int k){
     return e;
     
 }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class BTNode{
+
+    public :
+        int data;
+        BTNode<T>* left;
+        BTNode<T>* right;
+
+        BTNode(int data){
+            this->data = data;
+            this->left = NULL;
+            this->right = NULL;
+        }
+}
+
+
+void printTreeRecursive(BTNode<int>* root){
+
+    if(root == NULL){
+        return ;
+    }
+
+    cout<<root->data<<" : ";
+    if(root->left){
+        cout<<root->left->data<<", ";
+    }
+    if(root->right){
+        cout<<root->right->data<<" ";
+    }
+
+    cout<<endl;
+    printTreeRecursive(root->left);
+    printTreeRecursive(root->right);
+}
+
+
+void printTreeLevelWise(BTNode<int>* root){
+
+    if(root == NULL) return ;
+
+    queue<BTNode<int>*> q;
+    q.push(root);
+
+    while(!q.empty()){
+
+        BTNode<int> *f = q.front();
+        q.pop();
+
+        cout<<f->data<<" : ";
+        if(f->left){
+            cout<<f->left->data<<" ,";
+            q.push(f->left);
+        }
+        if(f->right){
+            cout<<f->right->data<<" ";
+            q.push(f->right);
+        }
+
+    }
+}
+
+
+BTNode<int>* takeInputRecursive(){
+
+    int data;
+    cout<<"Enter data : ";
+    cin>>data;
+    if(data != -1){
+        BTNode<int> *root = new BTNode<int>(data);
+    }else{
+        return NULL;
+    }
+
+    root->left = takeInputRecursive();
+    root->right = takeInputRecursive();
+
+    return root;
+}
+
+BTNode<int>* takeInputLevelWise(){
+
+    int rootData;
+    cout<<"Enter root data : ";
+    cin>>rootData;
+    if(rootData == -1){
+        return NULL;
+    }
+
+    BTNode<int>* root = new BTNode<int>(rootData);
+    queue<BTNode<int>*> q;
+    q.push(root);
+
+    while(!q.empty()){
+
+        BTNode<int> *f = q.front();
+        q.pop();
+
+        int leftData;
+        cout<<"Enter left data : ";
+        cin>>leftData;
+
+        if(leftData != -1){
+            BTNode<int>* left = new BTNode<int>(leftData);
+            f->left = left;
+            q.push(left);
+        }
+
+        int rightData;
+        cout<<"Enter right data : ";
+        cin>>rightData;
+
+        if(rightData != -1){
+            BTNode<int> *right = new BTNode<int>(rightData);
+            f->right = right;
+            q.push(right);
+        }
+    }
+    cout<<endl;
+    return root;
+}
+
+
+bool searchNode(BTNode<int>* root,int key){
+    if(root == NULL){
+        return false;
+    }
+
+    if(root->data == key){
+        return true;
+    }
+
+    return searchNode(root->left,key) || searchNode(root->right,key);
+}
+
+
+int minValue(BTNode<int>* root){
+
+    if(root == NULL){
+        return INT_MAX;
+    }
+
+    return min(root->data,min(minValue(root->left),minValue(root->right));
+}
+
+
+int countLeafNode(BTNode<int>* root){
+
+    if(root == NULL){
+        return -1;
+    }
+
+    if(root->left == NULL and root->right == NULL){
+        return 1;
+    }
+
+    return countLeafNode(root->left) + countLeafNode(root->right);
+}
+
+
+ListNode* swapPairs(ListNode* head){
+    if(head == NULL || head->next == NULL) return head;
+
+
+    ListNode* temp;
+    temp = head->next;
+    head->next = swapPairs(head->next->next);
+    temp->next = head;
+    
+    return temp;
+}
+
+
+TreeNode* getMostRight(TreeNode* root){
+
+    if(root->right == NULL) return root;
+    getMostRight(root->right);
+}
+
+void flatten(TreeNode* root){
+
+    if(root == NULL) return root;
+
+    TreeNode* rightMost;
+    TreeNode* nextRight;
+    
+
+    while(root){
+        if(root->left){
+            rightMost = getMostRight(root->left);
+
+            ListNode* nextRight = root->right;
+            root->right = root->left;
+            root->left = NULL;
+            rightMost->right = nextRight;        
+        }
+
+        root = root->right;
+    }
+    
+}
+
+
+TreeNode* getMostRight(TreeNode* root){
+    if(root->right == NULL) return root;
+    getMostRight(root->right);
+}
+
+void flatten(TreeNode* root){
+
+    if(root == NULL ) return ;
+
+    TreeNode* rightMost ;
+    TreeNode* nextRight;
+
+    while(root){
+
+        if(root->right){
+            rightMost = getRightMost(root->left);
+            nextRight = root->right;
+
+            root->right = root->left;
+            root->left = NULL;
+            rightMost->right = nextRight;
+        }
+
+        root = root->right;
+    }
+
+
+}
+
+
+ListNode* swapPairs(ListNode* head){
+
+    if(head == NULL || head->next == NULL) return head;
+
+    ListNode* temp = root->next;
+    root->next = swapPairs(root->next->next);
+    temp->next = head;
+    
+
+    return temp;
+}
+
+
+TreeNode* buildTreeHelper(vector<TreeNode*> inorder,vector<TreeNode*> postorder,int inS,int inE,int postS,int postE){
+
+    if(root == NULL){
+        return NULL;
+    }
+
+    int rootData = postorder[postS];
+    int rootIndex = -1;
+    for(int i = 0;i < inorder.size();i++){
+        if(rootData == inorder[i]){
+            rootIndex = i;
+        }
+    }
+
+    int leftInS = inS;
+    int leftInE = rootIndex -1;
+    int rightInS = rootIndex+1;
+    int rightInE = inE;
+
+    int leftPostS = postS;
+    int leftPostE = leftPostS + leftInE - leftInS;
+    int rightPostS = leftPostE+1;
+    int rightPostE = postE-1;
+
+    TreeNode* root = new TreeNode(rootData);
+    root->left = buildTreeHelper(inorder,postorder,leftInS,leftInE,leftPostS,leftPostE);
+    root->right = buildTreeHelper(inorder,postorder,rightInS,rightInE,rightPosS,rightPostE);
+
+    return root;
+}
+
+TreeNode* buildTree(vector<TreeNode*> inorder, vector<TreeNode*> postorder){
+
+    int n = inorder.size();
+    TreeNode* root = buildTreeHelper(inorder,postorder,0,n-1,0,n-1);
+
+    return root;
+}
+
+bool helper(TreeNode* left,TreeNode* right){
+
+    if(left == NULL && right != NULL) return false;
+    if(left != NULL && right == NULL) return false;
+    if(left == NULL && right == NULL) return true;
+
+    if(left->val != right->val) return false;
+
+    return helper(left->left,right->right) && helper(left->right,right->left);
+}
+
+bool isSymmetric(TreeNode* root){
+    if(root == NULL) return true;
+
+    return helper(root->left,root->right);
+}
+
+
+bool getPath(TreeNode* root,int val,vector<int> &ans){
+
+    if(root == NULL) return false;
+
+    ans.push_back(root->val);
+    if(root->val == val){
+        return true;
+    }
+
+    bool left = getPath(root->left,val,ans);
+    bool right = getPath(root->right,val,ans);
+
+    if(left || right){
+        return true;
+    }
+
+    ans.pop_back();
+    return false;
+}
+
+int height(TreeNode* root){
+    if(root == NULL) return 0;
+
+    return max(height(root->left),height(root->right)) + 1;
+}
+
+int diameterOfBT(TreeNode* root){
+    if(root == NULL) return 0;
+
+    int option1 = height(root->left) + height(root->right);
+    int option2 = diameterOfBT(root->left);
+    int option3 = diameterOfBT(root->right);
+
+    return max(option1,max(option2,option3));
+}
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+template<typename T>
+class BSTnode{
+
+    public :
+        BSTnode<T>* left;
+        BSTnode<T>* right;
+
+        int data ;
+
+        BSTnode(int data){
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+
+        ~BSTnode(){
+            delete left;
+            delete right;
+        }
+}
+
+void printTree(BSTnode<int>* root){
+    if(root == NULL) return ;
+
+    cout<<root->data<<" : ";
+
+    if(root->left){
+        cout<<root->left->data<<",";
+    }
+    if(root->right){
+        cout<<root->right->data<<" ";
+    }
+
+    cout<<endl;
+    print(root->left);
+    print(root->right);
+}
+
+bool hasData(BSTnode<int>* root , int data){
+    if(root == NULL) return false;
+
+    if(root->data == data) return true;
+
+    if(root->data > data){
+        return hasData(root->left,data);
+    }
+    if(root->data < data){
+        return hasData(root->right,data);
+    }
+}
+
+BSTnode<int>* insert(BSTnode<int>* root,int data){
+
+    if(root == NULL){
+        BSTnode<int>* root = new BSTnode<int>(data);
+        return root;
+    }
+
+    if(root->data < data){
+        root->right = insert(root->right,data);
+    }else{
+        root->left = insert(root->left,data);
+    }
+
+    return root;
+}
+
+
+BSTnode<int>* deleteData(BSTnode<int>* root,int data){
+    if(root == NULL){
+        return NULL;
+    }else if(root->data < data){
+        root->right = deleteData(root->right,data);
+    }else if(root->data > data){
+        root->left = deleteData(root->left,data);
+    }else{
+        if(root->left == NULL and root->right == NULL){
+            delete root;
+            return NULL;
+        }else if(root->right == NULL){
+            BSTnode<int>* temp = root->left;
+            root->left = NULL;
+            delete root;
+            return temp;
+        }else if(root->left == NULL){
+            BSTnode<int>* temp = root->right;
+            root->right = NULL;
+            delete root;
+            return temp;
+        }else{
+            BSTnode<int> *minNode = root->right;
+            while(minNode->left != NULL){
+                minNode = minNode->left;
+            }
+            int rightMin = minNode->data;
+            root->data = rightMin;
+            root->right = delete(root->right,rightMin);
+        }
+    }
+
+    return root;
+}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main(){
+    cout<<"hello world";
+    return 0;
+}
+
+
+void reverseArray(int a[],int n){
+
+    for(int i = n-1;i >= 0;i--){
+        cout<<a[i]<<" ";
+    }
+}
+
+reverseArray(a,6);
+
+
+pair<long long,long long> maxAndminFind(long long a[],int n){
+
+    int max = INT_MIN;
+    int min = INT_MAX;
+
+    for(int i = 0; i < n;i++){
+
+        if(a[i] < min){
+            min = a[i];
+        }
+        if(a[i] > max){
+            max = a[i];
+        }
+    }
+
+    pair<long long , long long> p;
+    p.first = min;
+    p.second = max;
+
+    return p;
+}
+
+
+pair<long long ,long long> findKthMinAndMax(int a[],int l,int r,int k){
+
+    sort(a,a+r+1);
+    return a[k-1];
+}
+
+
+void sortColors(int a[],int n){
+
+    int low = 0,mid = 0, high = n-1;
+
+    while(mid <= high){
+
+        if(a[mid] == 0){
+            swap(a[low++],a[mid++]);
+        }else if(a[mid] == 2){
+            swap(a[mid],a[high--]);
+        }else{
+            mid++;
+        }
+    }
+}
+
+void segregateElement(int nums[],int n){
+
+
+    vector<int> hel;
+
+    for(int i = 0;i < n;i++){
+        if(nums[i] > 0){
+            hel.push_back(nums[i]);
+        }
+    }
+    for(int i = 0;i < n;i++){
+        if(nums[i] < 0){
+            hel.push_back(nums[i]);
+        }
+    }
+
+    for(int i = 0;i < hel.size();i++){
+        nums[i] = hel[i];
+    }
+
+}
+
+int doUnion(int a[],int n , int b[],int m){
+
+    set<int> st;
+    int count = 0;
+
+    for(int i = 0;i < n;i++){
+        if(st.find(a[i]) == st.end()){
+            count++;
+            st.insert(a[i]);
+        }
+    }
+
+    for(int i = 0;i < m;i++){
+        if(st.find(b[i]) == st.end()){
+            count++;
+            st.insert(b[i]);
+        }
+    }
+
+    return count;
+}
+
+void rotateByOne(int a[],int n){
+
+    int last = a[n-1];
+
+    for(int i = n-1;i >= 0;i--){
+
+        if(i != 0){
+            a[i] = a[i-1];
+        }else{
+            a[i] = last;
+        }
+    }
+}
+
+long maxSubArraySum(int a[],int n){
+
+    int max_current = a[0];
+    int max_global = a[0];
+
+    for(int i = 1;i < n;i++){
+        max_current = max(a[i],max_current+ a[i]);
+        if(max_current > max_global){
+            max_global = max_current ;
+        }
+    }
+
+    return max_global;
+}
+
+
+int getMinDiff(int a[],int n,int k){
+
+    sort(a,a+n);
+
+    int lt = 0;
+    int st = 0;
+
+    int ans = a[n-1] - a[0];
+    int large = a[n-1]-k;
+    int small = a[0]+k;
+
+    for(int i = 0;i < n-1;i++){
+
+        lt = max(large,a[i]+k);
+        st = min(small,a[i+1]-k);
+
+        if(st < 0){
+            continue;
+        }
+
+        ans = min(ans,lt-st);
+    }
+
+    return ans;
+}
+
+
+int minJump(int a[], int n){
+
+    if(n == 1){
+        return 0;
+    }
+
+    if(a[0] == 0){
+        return -1;
+    }
+    
+    int jumps = 1;
+    int steps = a[0];
+    int maxReach = a[0];
+
+    for(int i = 1;i < n;i++){
+
+
+        if(i == n-1){
+            return jumps;
+        }       
+
+        maxReach = max(maxReach, arr[i] + i);
+        steps--;
+        if(steps == 0){
+            jumps++;
+
+            if(i >= maxReach){
+                return -1;
+            }
+            steps = maxReach - i;
+            
+        }
+    }
+
+}
+
+
+int minJumps(int a[],int n){
+
+    if(n == 1){
+        return 0;
+    }
+    if(a[0] == 0){
+        return -1;
+    }
+
+    int jumps = 1;
+    int steps = a[0];
+    int maxReach = a[0];
+
+    for(int i = 1;i < n;i++){
+
+        if(i == n-1){
+            return jumps;
+        }
+
+        maxReach = max(maxReach, a[i]+i);
+
+        steps--;
+        if(steps == 0){
+            jumps++;
+
+            if(i >= maxReach){
+                return -1;
+            }
+
+            steps = maxReach - i;
+        }
+    }
+
+    return -1;
+}
+
+
+int evenOdd(int n){
+
+    if(n&1 == 1){
+        cout<<"odd";
+    }else{
+        cout<<"even"
+    }
+}
+
+
+int AtoB(int a, int b){
+
+    int res = 1;
+
+    while(a && b){
+        if(a&1 == 1){
+            if(b&1 == 1){
+                res = res*2;
+            }else{
+                return 0;
+            }
+        }
+
+        a = a >> 1;
+        b = b >> 1;
+    }
+
+    return res;
+}
+
+int leastGreater(int n){
+
+    cout<<(n | n+1)<<endl;
+}
+
+void checkIthBit(int n,int i){
+
+    if(n&(1<<i-1)){
+        cout<<"yes";
+    }else{
+        cout<<"no";
+    }
+}
+
+int checkPowerOfFour(int n){
+
+    if(n < 0){
+        return false;
+    }
+
+    if(__builtin_popcount(n) == 1){
+        int k = floor(log2(n)+1);
+        if(k&1 == 1) return true;
+    }
+    return false;
+}
+
+int AtoB(int a,int b){
+
+    int res = 0;
+
+    while(a && b){
+        if(a&1 == 1){
+            if(b&1 == 1){
+                res = res*2;
+            }else{
+                return 0;
+            }
+        }
+
+        a = a >> 1;
+        b = b >> 1;
+    }
+
+    return res;
+}
+
+int leastGreater(int n){
+
+    cout<<(n | n+1)
+}
+
+bool checkIthBit(int n){
+
+    cout<<(n&(1<<(i-1)));
+}
+
+void determinigNum(int n){
+
+    int a[] = {1,2,3,4,5,4,3,5};
+
+    int ans = 0;
+    for(int i : a){
+        ans = ans^i;
+    }
+
+    int bits = floor(log2(ans)+1);
+
+
+    int y1=0,y2=0;
+    for(int i : a){
+        if(i&(1<<(bits-1))){
+            y1 ^= i;
+        }else{
+            y2 ^= i;
+        }
+    }
+
+    if(y1 < y2) cout<<y1<<" "<<y2;
+    else cout<<y2<<" "<<y1;
+}
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+void payingUp(int n,int m,int a[]){
+
+    int total = 1<<n;
+    bool flag = false;
+
+    for(int k =1 ;k < total;k++){
+        long long sum = 0;
+        for(int i = 0;i < n;i++){
+            if(k&(1<<i)){
+                sum += a[i];
+            }
+        }
+
+        if(sum == m){
+            flag = true;
+            break;
+        }
+    }
+
+    if(flag){
+        cout<<"yes";
+    }else{
+        cout<<"no";
+    }
+}
+
+void printSubsetOfK(int n,int k,int a[]){
+
+    int total = 1<<n;
+
+    for(int m = 1;m < total;m++){
+        if(__builtin_popcount(m) == k){
+            for(int i = 0;i < n;i++){
+                if(m&(1<<i)){
+                    cout<<a[i]<<" ";
+                }
+            }
+            cout<<endl;
+        }
+    }
+}
+
+
+int russianPeasant(int x,int y){
+
+    int res = 0;
+    while(y > 0){
+
+        if(y&1){
+            res += x;
+        }
+
+        y = y >> 1;
+        x = x << 1;
+    }
+
+    return res;
+}
+
+
+string addBitsString(string str1, string str2){
+
+
+    int i = str1.size() -1;
+    int j = str2.size() -1;
+    int carry = 0;
+    string ans = "";
+
+    while(i >= 0 || j >= 0 || carry){
+        carry += (i >= 0) ? (str1[i--] - '0') : 0 ;
+        carry += (j >= 0) ? (str1[j--] - '0') : 0 ;
+        ans = char('0' + (carry%2)) + ans;
+
+        carry = carry/2;
+    }
+
+    return ans;
+}
+
+void binaryRepresentation(int n){
+
+    if(n > 1){
+        binaryRepresentation(n/2);
+    }
+
+    cout<<n%2;
+}
+
+
+void NoOdd(int a[],int n){
+
+    int res = 0;
+    for(int i = 0;i < n;i++){
+        res ^= a[i];
+    }
+
+    cout<<res;
+}
+
+void fun(int n){
+
+    cout<<(n & (n-1));
+}
+
+int myXOR(int x,int y){
+
+    return (x|y) & (~x|~y);
+}
+
+int leftRotate(int n,int d){
+
+    if(n < 0){
+        return 0;
+    }
+
+    return (n << d) | (n >> (32 - d));
+}
+
+int rightRotate(int n,int d){
+    if(n < 0){  
+        return 0;
+    }
+
+    return (n >> d) | (n << (32 -d));
+}
+
+int russianPeasant(int x, int y){
+
+    int res = 0;
+    while(y > 0){
+
+        if(y&1){
+            res += x;
+        }
+
+        y = y >> 1;
+        x = x << 1;
+    }
+
+    return res;
+}
+
+void swap(int &x,int &y){
+
+    x = x^y;
+    y = x^y;
+    x = x^y;
+
+    cout<<x<<" "<<y;
+}
+
+
+void findMajority(int a[],int n){
+
+    int total = sizeof(int)*8;
+
+    int number = 0;
+    for(int i = 0; i < len ;i++){
+        int count = 0;
+        for(int j = 0;j < n;j++){
+            if(a[j]&(1 << i)){
+                count++;
+            }
+        }
+
+        if(count > (n/2)){
+            number += (1 << i);
+        }
+    }
+
+    int count = 0;
+
+    for(int i = 0;i < n;i++){
+        if(a[i] == number){
+            count++;
+        }
+    }
+
+    if(count > (n/2)){
+        cout<<"majority element : "<<number<<endl;
+    }else{
+        cout<<"There's no majority element";
+    }
+
+
+}
+
+
+
+
+void findMajority(int a[],int n){
+
+    int total = sizeof(int)*8;
+    int number = 0;
+
+    for(int i = 0;i < total;i++){
+        int count = 0;
+
+        for(int j = 0;j < n;j++){
+            if(a[j]&(1 << i)){
+                count++;
+            }
+        }
+
+        if(count > (n/2)){
+            number += (1<<i);
+        }
+    }
+
+    int count = 0;
+
+    for(int i = 0;i <n;i++){
+        if(a[i] == number){
+            count++;
+        }
+    }
+    if(count > (n/2)){
+        cout<<"majority element is : "<<number<<endl;
+    }else{
+        cout<<"there's no majority element in the array "<<endl;
+    }
+}
+
+void swapEvenWithOdd(int n){
+
+    unsigned int even_bits = n&(0xaaaaaaaa)>>1;
+    unsigned int odd_bits = n&(0x55555555)<<1;
+
+    return even_bits | odd_bits;
+}
+
+int swapBits(int n, int p1,int p2,int m){
+
+    int hello = ((n>>p1)^(n>>p2)) & ((1U<<n)-1);
+
+    return x^((hello<<p1) | (hello<<p2));
+}

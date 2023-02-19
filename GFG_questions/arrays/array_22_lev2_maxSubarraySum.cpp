@@ -21,7 +21,7 @@ long long maxSubarraySum(int arr[], int n){
         if(max_current > max_global){
             max_global = max_current;
         }
-    }
+    }   
     return max_global;
 }
 int main(){

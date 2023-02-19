@@ -10,7 +10,7 @@ void mergeArrays(int x[],int y[],int a[],int s,int e){
         if(x[i] < y[j]){
             a[k] = x[i];
             i++;
-            k++;
+            k++;    
         }else{
             a[k] = y[j];
             k++;
