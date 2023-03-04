@@ -11,6 +11,18 @@ int firstIndex(int a[],int n,int x,int i){
     int small = firstIndex(a,n,x,i+1);
     return small;
 }
+int firstIndex1(int a[],int n,int m,int i){
+
+    if(n == i){
+        return -1;
+    }
+
+    if(a[i] == m){
+        return i;
+    }
+
+    return firstIndex1(a,n,m,i+1);
+}   
 int lastIndex(int a[],int n,int x,int i){
     if(i < 0){
         return  -1;
@@ -48,5 +60,5 @@ int lastIndex2(int a[],int n,int x,int i){
 }
 int main(){
     int a[5] = {1,2,5,4,5};
-    cout<<"key found at : "<<lastIndex1(a,5,5);
+    cout<<"key found at : "<<firstIndex1(a,5,5,0);
 }

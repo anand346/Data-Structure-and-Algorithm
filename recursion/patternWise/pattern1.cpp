@@ -12,12 +12,6 @@ int fibonacci(int n){
     int smallO2 = fibonacci(n - 2);
     return smallO1+smallO2;
 }
-int findGCD(int num1,int num2){
-    if(num2 == 0){
-        return num1;    
-    }
-    return findGCD(num2,num1%num2);
-}
 int factorial(int n){
     if(n < 1){
         return 1;
@@ -94,6 +88,44 @@ double gSum(int n){
     double result = gSum(n-1);
     return result + 1.0/pow(2,n);   
 }
+
+bool checkElement(int a[],int n,int x){
+    if(n == 0){
+        return false;
+    }
+    if(a[0] == x){
+        return true;
+    }
+    bool small = checkElement(a+1,n-1,x);
+    return small;
+}
+int firstIndex(int a[],int n,int x,int i){
+    if(n == i){
+        return  -1;
+    }
+    if(a[i] == x){
+        return i;
+    }
+    int small = firstIndex(a,n,x,i+1);
+    return small;
+}
+int lastIndex1(int a[],int n,int x){
+    if(n < 0){
+        return  -1;
+    }
+    if(a[n-1] == x){
+        return n-1;
+    }
+    int small = lastIndex1(a,n-1,x);
+    return small;
+}
+int sumOfArray(int a[],int n){
+    if(n == 0){
+        return 0;
+    }
+    int sum = sumOfArray(a+1,n-1);
+    return sum + a[0];
+}
 int main(){
     // int n;
     // cout<<"Enter position of fibonacci series : "<<endl;
@@ -135,16 +167,16 @@ int main(){
     // cout<<"sum is : "<<sumOfDigits(n);
     
     
-    int m,n;
-    cout<<"enter no."<<endl;
-    cin>>m>>n;
-    cout<<"multiplication is : "<<multiply(m,n);
-    
-    
-    // long long m;
+    // int m,n;
     // cout<<"enter no."<<endl;
-    // cin>>m;
-    // cout<<"zeros are : "<<countZeros(m);
+    // cin>>m>>n;
+    // cout<<"multiplication is : "<<multiply(m,n);
+    
+    
+    long long m;
+    cout<<"enter no."<<endl;
+    cin>>m;
+    cout<<"zeros are : "<<countZeros(m);
 
 
     // int m;

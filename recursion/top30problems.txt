@@ -1,0 +1,37 @@
+https://medium.com/javarevisited/30-recursion-interview-questions-and-coding-exercises-for-programming-interviews-2816302e9ab
+
+1. How to calculate factorial using recursion in Java. (solution)
+2. How to Print Fibonacci Series in Java using Recursion. (solution)
+3. How to reverse String in Java using Recursion. (solution)
+4. Write a countDown(int number) method in Java using Recursion which prints countdown till zero to console, like count(3) should print 3 2 1 0
+5. How to reverse Linked List using Recursion. (solution)
+6. How to print digitsToWords(int number) for example digitToWords(321) should print three or two ones? (solution)
+7. How to reverse a number using Recursion in Java? (solution)
+8. How to calculate the sum of arithmetic series from 1 to N? (solution)
+9. How to calculate the power of a number like power(int number, int power) like power(2, 3) should return 8? (solution)
+10. How to calculate Greatest Common Division GCD using Euclid’s algorithm (solution)
+11. How to print nodes of trees in the pre-order traversal using recursion? (solution)
+12. Write a Java program to convert Decimal to binary using recursion. (solution)
+13. How to code a post-order traversal algorithm using recursion? (solution)
+14. How to implement inorder traversal of binary tree using recursion? (solution)
+15. How to count the number of leaf nodes in a given binary tree? (solution)
+16. How to implement a binary search algorithm using recursion? (solution)
+17. How to find all permutations of a given String in Java? (solution)
+18. How to calculate the sum of digits using recursion in Java? (solution)
+19. How to solve the Tower of Hanoi problem using recursion? (solution)
+20. How to implement bubble sort algorithms using recursion? (solution)
+21. How to implement Quick sort algorithm using recursion? (solution)
+22. How to implement merge sort algorithm using recursion (solution)
+23. Solve the Nine Queen problem in chess using Recursion (solution)
+24. Solve Regular Expression matching problem using recursion where you have given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+
+    '.' Matches any single character.​​​​
+    '*' Matches zero or more of the preceding element.
+
+The matching should cover the entire input string (not partial).
+
+25. How to merge two sorted linked list using Recursion (solution)
+
+26. How to calculate power of three using recursion (solution)
+
+27. How to remove a given element form a linked list using recursion (solution)

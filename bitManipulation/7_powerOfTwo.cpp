@@ -4,7 +4,7 @@
 using namespace std;
 
 
-bool isPowerTwo(int n){
+bool isPowerTwo1(int n){
     if(n < 0){
         return false;
     }
@@ -14,6 +14,12 @@ bool isPowerTwo(int n){
         n = n&(n-1);
     }
     return count == 1;
+}
+
+bool isPowerTwo(int n){
+
+    if((n&(n-1)) == 0) return true;
+    return false;
 }
 
 int main(){

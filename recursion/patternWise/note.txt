@@ -1,0 +1,6 @@
+//patterns recognised of recursion problem
+
+1. ek position pr agr true mil jata h to wahi ruk kr return kr dete hn .
+2. ek position pr agr true mil jata h to aage bhi check krte hn .
+3. sare elements traverse krte hn .
+4. small result se kaam chal jata h .

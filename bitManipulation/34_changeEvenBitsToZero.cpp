@@ -15,3 +15,7 @@ int main(){
     cout<<changeEvenBitsToZero(30);
 
 }
+
+// 30 -> 11110
+// 20 -> 10100
+// 10 -> 01010
