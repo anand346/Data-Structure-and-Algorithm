@@ -1,5 +1,5 @@
 // https://youtu.be/XtmW3a8Q9M4
-
+// subsets : 2^n ; where n is no of elements in array ;
 #include<bits/stdc++.h>
 using namespace std;
 

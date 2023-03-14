@@ -16080,6 +16080,1021 @@ void solveSudoku(vector<vector<char>> board){
     solve(board,0,0);
 }
 
+void printSubsets(vector<int> arr){
+
+    int n = arr.size();
+
+    int total = 1<<n;
+
+    for(int k = 1;k < total;k++){
+        for(int i = 0;i < n;i++){
+            if(k&(1<<i)){
+                cout<<arr[i]<<" "
+            }
+        }
+        cout<<endl;
+    }
+}
 
 
 
+void printSubsets(vector<int> arr){
+
+    int n = arr.size();
+
+    int total = 1<<n;
+    for(int k = 1;k < total ;k++){
+        for(int i = 0;i < n;i++){
+            if(k&(1<<i)){
+                cout<<arr[i]<<" ";
+            }
+        }
+        cout<<endl;
+    }
+}
+
+
+string additionOfBitString(string str1,string str2){
+
+
+    int carry = 0;
+    string ans = "";
+    int len1 = str1.length();
+    int len2 = str2.length();
+
+    while(len1 >= 0 || len2 >= 0 || carry >= 0){
+
+        carry += len1 >= 0 ? str1[len1--] - '0' : 0;
+        carry += len2 >= 0 ? str1[len2--] - '0' : 0;
+        ans = char('0'+(carry%2)) + ans;
+        carry /= 2;
+    }
+
+    return ans;
+}
+
+
+
+return ["https://www.linkedin.com/groups/10307956/","https://www.linkedin.com/groups/7018767/","https://www.linkedin.com/groups/100358/","https://www.linkedin.com/groups/3732032/","https://www.linkedin.com/groups/1875717/","https://www.linkedin.com/groups/3704356/","https://www.linkedin.com/groups/137552/","https://www.linkedin.com/groups/4496205/","https://www.linkedin.com/groups/2115120/","https://www.linkedin.com/groups/2056001/","https://www.linkedin.com/groups/10379184/","https://www.linkedin.com/groups/1074487/","https://www.linkedin.com/groups/7025688/","https://www.linkedin.com/groups/2231152/","https://www.linkedin.com/groups/6519652/","https://www.linkedin.com/groups/12307294/","https://www.linkedin.com/groups/4314060/","https://www.linkedin.com/groups/62218/","https://www.linkedin.com/groups/6940944/","https://www.linkedin.com/groups/1976445/","https://www.linkedin.com/groups/2154029/","https://www.linkedin.com/groups/2066905/","https://www.linkedin.com/groups/8571393/","https://www.linkedin.com/groups/54723/","https://www.linkedin.com/groups/63192/","https://www.linkedin.com/groups/7039829/"];
+
+
+void printAbbreviation(string str,string asf,int count , int pos){
+
+    if(pos == str.length()){
+        if(count > 0){
+            cout<<asf+char('0'+count)<<endl;
+        }else{
+            cout<<asf<<endl;
+        }
+        
+        return ;
+    }
+
+    if(count > 0){
+        printAbbreviation(str,asf+char('0'+count)+str[pos],0,pos+1);
+    }else{
+        printAbbreviation(str,asf+str[pos],0,pos+1);
+    }
+
+    printAbbreviation(str,asf,count+1,pos+1);
+    
+
+
+}
+
+
+bool evenOrOdd(int n){
+
+    if(n&1){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+bool evenOrOdd(int n){
+
+    if(n&1){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+int swapBits(int x,int p1,int p2,int n){
+    int hello = (x>>p1 ^ x>>p2)&((1<<n)-1);
+    return x^(hello<<p1 | hello<<p2);
+}
+
+
+int majorityElement(int a[],int n){
+
+    int len = sizeof(int)*8;
+
+    int number = 0;
+
+    for(int i = 0;i < len;i++){
+        int count = 0;
+        for(int j = 0;j < n;j++){
+            if(a[j]&(1<<i)){
+                count++;
+            }
+        }
+
+        if(count > (n/2)){
+            number += (1<<i);
+        }
+    }
+
+    int count = 0;
+    for(int i = 0;i < n;i++){
+        if(number == a[i]){
+            count++;
+        }
+    }
+
+    if(count > (n/2)){
+        return number;
+    }else{
+        return -1;
+    }
+}
+
+
+bool checkPal(char str[],int s,int e){
+    if(s > e){
+        return true;
+    }
+
+    if(str[s] == str[e]){
+        return checkPal(str,s+1,e-1);
+    }else{
+        return false;
+    }
+}
+
+
+int findGCD(int a,int b){
+
+    if(b == 0){
+        return a;   
+    }
+    return findGCD(b,a%b);
+
+}
+
+
+
+int findGCD(int num1,int num2){
+    if(num2 == 0){
+        return num1;
+    }
+
+    return findGCD(num2,num1%num2);
+}
+
+bool powerOfThree(int n){
+
+    if(n == 1 || n == 3) return true;
+    if(n == 0 || n%3 != 0) return false;
+
+    return powerOfThree(n/3);
+}
+
+int fibonacci(int n){
+    if(n == 1){
+        return 1;
+    }
+
+    if(n == 0){
+        return 0;
+    }
+
+    int small1 = fibonacci(n-1);
+    int small2 = fibonacci(n-2);
+    return small1 + small2;
+}
+
+int factorial(int n){
+    if(n == 0){
+        return 0;
+    }
+
+    return factorial(n-1)*n;
+}
+
+int power(int m,int n){
+    if( n == 0){
+        return 1;
+    }
+
+    int small = power(m,n-1);
+    return small*m;
+}
+
+int print(int n){
+    
+    if(n == 0){
+        return 0;
+    }
+    cout<<print(n-1)<<" ";
+    return n;
+}
+
+
+int count(int n){
+    if(n/10 == 0){
+        return 1;
+    }
+
+    int small = count(n/10);
+    return small+1;
+}
+
+int sumOfDigits(int n){
+
+    if(n == 0){
+        return 0;
+    }
+    int small = sumOfDigits(n/10);
+    int lastDigit = n%10;
+    return small+lastDigit;
+}
+
+int multiply(int m,int n){
+
+    if(n == 0){
+        return 0;
+    }
+
+    int small = multiply(m,n-1);
+    return small+m;
+}
+
+long long countZero(int n){
+
+    if(n == 0){
+        return 0;
+    }
+
+    int small = countZero(n/10);
+    int lastDigit = n%10;
+    if(lastDigit == 0){
+        return small+1;
+    }else{
+        return small;
+    }
+}
+
+
+double gsum(int n){
+
+    if(n == 0){
+        return 1;
+    }
+
+    int small = gsum(n-1);
+    return small + 1.0/pow(2,n);
+}
+
+
+int helper(string str,int idx == 0){
+
+    int sign =1 ;
+    int number = 0;
+    int res = 0;
+
+
+    for(;idx < str.length();idx++){
+
+        char ch = str[idx];
+
+        if(ch == ' '){
+            continue;
+        }else if(ch == '+' || ch == '-'){
+            res += sign*(number);
+            number = 0;
+            sign = ch == '+' ? 1 : 0;
+        }else if('('){
+            res += sign*helper(str,++idx);
+        }else if(')'){
+            break;
+        }else{
+            number = number*10+(ch-'0');
+        }
+    }
+
+    return res+(sign*number);
+}
+
+int basicCalculator(string str){
+
+    int x = helper(str);
+    return x;
+}
+
+
+int myAtoI(string str){
+
+    if(str.length() == 0){
+        return 0;
+    }
+
+    if(str.length() == 1){
+        if(isdigit(str[0])){
+            return str[0]-'0';
+        }else{
+            return 0;
+        }
+    }
+
+    int i = str.find_first_not_of(' ');
+    int indicator = 1;
+    int result = 0;
+
+    if(i == -1){
+        return 0;
+    }
+
+    if(str[i] == '-' || str[i] == '+'){
+        indicator = str[i++] == '+' ? 1 : -1;
+    }
+
+    while(isdigit(str[i])){
+
+        result = result*10+(str[i++]-'0');
+
+        if(result*indicator >= INT_MAX){
+            return INT_MAX;
+        }else if(result*indicator <= INT_MIN){
+            return INT_MIN;
+        }
+
+    }
+    return result*indicator;
+}
+
+
+string intToWords(int n){
+
+    vector<pair<char,int>> nums = {{}};
+
+    if(n == 0){
+        return "zero";
+    }
+
+    for(auto it : nums){
+        if(n >= it.first){
+            return (n >= 100 ? intToWords(n/it.first) + " " : "") + it.second + (n%it.first == 0 ? "" : " " + intToWords(n%it.first));
+        }
+    }
+
+    return "";
+}
+
+
+vodi printPermu(char str[],int i=0){
+
+    if(str[i] == '\0'){
+        cout<<str<<endl;
+        return ;
+    }
+
+    for(int j = i;str[j] != '\0';j++){
+        swap(str[j],str[i]);
+        printPermu(str,i+1);
+        swap(str[i],str[j]);
+    }
+}
+
+
+void printAbbreviation(string str,string asf ,int count,int idx){
+
+    if(str.length() == 0){
+
+        if(count > 0){
+            cout<<asf+char('0'+count)<<endl;
+        }else{
+            cout<<asf<<endl;
+            
+        }
+    }
+
+    if(count > 0){
+        printAbbreviation(str,asf+char('0'+count)+str[idx],0,idx+1);
+    }else{  
+        printAbbreviation(str,asf+str[idx],0,idx+1);
+    }
+
+    printAbbreviation(str,asf,count+1,idx+1);
+}
+
+
+
+void solve(bool board[][8],int n,int row,bool cols[],bool ndiag[],bool rdiag,string asf){
+
+    if(row == n){
+        cout<<asf+'.'<<endl;
+        return ;
+    }
+
+    for(int col = 0;col < n;col++){
+
+        if(cols[col] == false && ndiag[row+col] == false && rdiag[(row-col)+(n-1)] == false){
+
+            board[row][col] = true;
+            cols[col] = true;
+            ndiag[row+col] = true;
+            rdiag[(row-col)+(n-1)] = true;
+            solve(board,n,row+1,cols,ndiag,rdiag,asf+char('0'+row)+'-'+char('0'+col));
+            board[row][col] = false;
+            cols[col] = false;
+            ndiag[row+col] = false;
+            rdiag[(row-col)+(n-1)] = false;
+
+        }
+    }
+}
+
+int main(){
+
+    cin>> n;
+
+    bool board[n][n] = {false};
+    bool cols[n] =  {false};
+    bool ndiag[(2*n)-1] = {fasle};
+    bool rdiag[(2*n)-1] = {false};
+
+    solve(board,n,0,cols,ndiag,rdiag,"");
+    
+}
+
+
+
+int solve(vector<string> words,vector<int> freq,vector<int> score,int idx){
+
+    if(idx == words.size()){
+        return 0;
+    }
+
+    int sno = 0 + solve(words,freq,score,idx+1);
+
+    int sword = 0;
+    string word = words[idx];
+    bool flag = true;
+
+    for(int i = 0;i < word.length();i++){
+
+        char ch = word[i];
+
+        if(freq[ch-'a'] == 0){
+            flag = false;
+        }
+
+        freq[ch-'a']--;
+        sword += score[ch-'a'];
+    }
+
+    int syes = 0;
+    if(flag){
+        syes = sword + solve(words,freq,score,idx+1);
+    }
+
+    for(int i = 0;i < word.length();i++){
+        char ch = word[i];
+        freq[ch-'a']++;
+    }
+
+    return max(sno,syes);
+    
+}
+
+int maxScoreWords(vector<string>& words, vector<char>& letters, vector<int>& score) {
+
+    vector<int> freq(26,0);
+    for(int i = 0; i < letters.size();i++){
+        freq[letters[i]-'a']++;
+    }
+
+    int result = solve(words,freq,score,0);
+    return result;
+}
+
+
+
+
+int AtoB(int a,int b){
+
+    int res = 1;
+    while(a && b){
+        if(a&1 == 1){
+            if(b&1 == 1){
+                res = res*2;
+            }else{
+                return 0;
+            }
+        }
+
+        a = a >> 1;
+        b = b >> 1;
+    }
+
+    return res;
+}
+
+
+int leastGreater(int a){
+    return a | a+1;
+}
+n&(1<<i-1)
+
+
+(int)(log2(n)+1);
+
+
+int getSetBit(int n){
+    int count = 0;
+
+    while(n){
+        count++;
+        n = n&n-1;
+    }
+
+    return count;
+}
+
+
+
+string addBitStrings(string str1,string str2){
+
+    string ans = "";
+    int carry = 0;
+    int i = str1.length()-1;
+    int j = str2.length()-2;
+
+    while(i >= 0 || j >= 0 || carry){
+
+        carry += i >= 0 ? (str1[i--]-'0') : 0;
+        carry += j >= 0 ? (str1[j--]-'0') : 0;
+        ans = char('0'+carry%2) + ans;
+
+        carry = carry/2;
+
+    }
+
+    return ans;
+}
+
+
+
+int majorityElement(int a[],int n ){
+    int len = sizeof(int)*8;
+
+    int number = 0;
+
+    for(int i = 0;i < len;i++){
+        int count = 0;
+
+        for(int j = 0;j <  n;j++){
+            if(a[j]&(1<<i)){
+                count++;
+            }
+
+            if(count > (n/2)){
+                number += (1<<i);
+            }
+        }
+    }
+
+    int count = 0;
+
+    for(int i = 0;i < n;i++){
+        if(a[i] == number){
+            count++;
+        }
+    }
+
+    if(count > (n/2)){
+        return number;
+    }else{
+        return -1;
+    }
+}
+
+string addition(string str1,string str2){
+
+    int carry = 0;
+    int i = str1.length()-1;
+    int j = str2.length()-2;
+    int res = 0;
+
+    while(carry || i >= 0 || j >= 0){
+
+        carry += i >=0 ? (str1[i--]-'0') : 0;
+        carry += j >= 0 ? (str2[j--]-'0') : 0;
+
+        ans = char('0'+carry%2)+ans;
+        carry = carry/2;
+    }
+
+    return ans;
+}
+
+int russianPeasant(int a,int b){
+
+    int res = 0;
+
+    while(b > 0){
+        if(b&1){
+            res = res+a;
+        }
+
+        b = b>>1;
+        a = a<<1;
+    }
+
+    return res;
+}
+
+int swapBits(int x,int p1,int p2,int d){
+
+    int hello = ((x>>p1) ^ (x>>p2))&((1<<n)-1);
+    return x^(hello<<p1 | hello<<p2);
+}
+
+int rotateBits(int x,int d){
+
+    int y = 0;
+
+    for(int i = 1;i <= 32;i++){
+        if(x&(1<<i)){
+            y = y | 1<<(32-i);
+        }
+    }
+
+    return y;
+}
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+class MinHeap{
+    private :
+        int *input;
+        int capacity;
+        int heap_size;
+
+    public :
+
+        MinHeap(int cap){
+            input = new int[cap];
+            capacity = cap;
+            heap_size = cap;
+        }
+
+        int left(i){
+            return (2*i+1);
+        }
+
+        int right(i){
+            return (2*i+2);
+        }
+
+        int parent(int i){
+            return (i-1)/2;
+        }
+
+        int getMin(){
+            return input[0];
+        }
+
+        void printArray(){
+            for(int i = 0;i < cap;i++){
+                cout<<input[i]<<" ";
+            }
+        }
+
+        int getMin(){
+            return input[0];
+        }
+
+        void getUnsortedArray(){
+            cout<<"enter your elements : ";
+            for(int i = 0;i < capacity;i++){
+                cin>>input[i];
+            }
+        }
+
+        void minHeapify(int i){
+
+            int l = left(i);
+            int r = right(i);
+            int smallest = i;
+
+            if(l < heap_size && input[l] < input[i]){
+                smallest = l;
+            }else if(r < heap_size && input[r] < input[i]){
+                smallest = r;
+            }
+
+            if(input[i] != input[smallest]){
+                swap(input[i],input[smallest]);
+                minHeapify(smallest);
+            }
+            
+        }
+
+        int extractMin(){
+
+            if(heap_size <= 0){
+                return INT_MAX;
+            }else if(heap_size == 1){
+                heap_size--;
+                return input[0];
+            }
+
+            int root = input[0];
+            input[0] = input[heap_size-1];
+            heap_size--;
+            minHeapify(0);
+            return root;
+
+        }
+
+        void heapSort(){
+            int temp[capacity];
+            for(int j = 0;j < capacity;j++){
+                temp[j] = extractMin();
+                cout<<temp[j]<<" ";
+            }
+        }
+
+}
+
+int main(){
+
+}
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+class PriorityQueue{
+
+    vector<int> pq;
+
+    public :
+        priorityQueue{
+
+        }
+
+        bool isEmpty(){
+            return pq.size() == 0;
+        }
+
+        int getSize(){
+            return pq.size();
+        }
+
+        int getMin(){
+            if(isEmpty()){
+                return 0;
+            }
+            return pq[0];
+        }
+
+        void insert(int element){
+            pq.push_back(element);
+            int CI = pq[pq.size()-1];
+
+            while(CI > 0){
+                int PI = (CI-1)/2;
+
+                if(pq[CI] < pq[PI]){
+                    swap(pq[CI],pq[PI]);
+                    CI = PI;
+                }else{
+                    break;
+                }
+            }
+        }
+
+        void removeMin(){
+
+            if(isEmpty()){
+                return ;
+            }
+
+            int min = pq[0];
+            pq[0] = pq[pq.size()-1];
+            pq.pop_back();
+
+            int pi = 0;
+            while(true){
+
+                int l = (pi*2)+1 ;
+                int r = (pi*2)+2 ;
+                int smallest = i;
+
+                if(l < pq.size() && pq[i] > pq[l]){
+                    smallest = l;
+                }else if(r < pq.size() && pq[i] > pq[r]){
+                    smallest = r;
+                }
+
+                if(pq[smallest] == pq[i]){
+                    break;
+                }
+
+                swap(pq[smallest],pq[i]);
+                pi = smallest;
+            }
+        }
+
+        void inplaceSort(){
+
+            for(int i = 1;i < pq.size();i++){
+
+                int CI = i;
+                while(CI > 0){
+                    int PI = (CI-1)/2;
+                    if(pq[PI] > pq[CI]){
+                        swap(pq[PI],pq[CI]);
+                        CI = pI;
+                    }else{
+                        break;
+                    }
+                }
+            }
+
+            int size = pq.size();
+
+            while(size >= 1){
+
+                swap(pq[0],pq[size-1]);
+                size--;
+
+                int pi = 0;
+                while(true){
+
+                    int l = (2*pi)+1;
+                    int r = (2*pi)+2;
+                    int smallest = pi;
+
+                    if(smallest < size && pq[l] < pq[pi]){
+                        smallest = l;
+                    }else if(smallest < size && pq[r] < pq[pi]){
+                        smallest = r;
+                    }
+
+                    if(smallest = pi){
+                        break;
+                    }
+                    swap(pq[smallest],pq[pi]);
+                    pi = smallest;
+
+                }
+            }
+            
+        }
+}
+
+
+int lastStoneWeight(vector<int>&stones){
+
+    priority_queue<int> pq;
+    int n = stones.size();
+
+    for(int i = 0;i < n;i++){
+        pq.push(stones[i]);
+    }
+
+    int first,second ;
+
+    while(n > 1){
+        first = pq.top();
+        pq.pop();
+        second = pq.top();
+        pq.pop();
+        n -= 2;
+
+        if(first-second > 0){
+            pq.push(first-second);
+            n += 1;
+        }
+    }
+
+    return pq.top();
+}
+
+int kthlargestelement(int *input,int n,int k){
+
+    priority_queue<int,vector<int>,greater<int>> pq(input,input+n);
+
+    for(int i = 0;i < n;i++){
+        if(pq.size() < k){
+            pq.push(input[i]);
+        }else{
+            if(pq.top() < input[i]){
+                pq.pop();
+                pq.push(input[i]);
+            }
+        }
+    }
+
+    return pq.top();
+
+}
+
+
+class Solution{
+
+    struct node{
+        int no;
+        int freq;
+        Node(int a,int b){
+            no = a;
+            freq = b;
+        }
+    };
+
+    struct compare{
+        bool operator()(node const &a,node const &b){
+            return a.freq < b.freq;
+        }
+    }
+
+    public :
+
+        vector<int> topKfrequency(vector<int> nums,int k){
+            unordered_map<int,int> mp;
+
+            for(int it : nums){
+                mp[it]++;
+            }
+
+            priority_queue<node,vector<node>,compare> pq;
+
+            for(auto it : mp){
+                pq.push(node(it.first,it.second));
+            }
+
+            vector<int> ans;
+
+            while(k--){
+                int temp = pq.top();
+                pq.pop();
+                ans.push_back(temp.no);
+            }
+
+            return ans;
+        }
+}
+
+
+class Solution{
+
+    struct node{
+        int no;
+        int freq;
+
+        node(int a,int b){
+            no = a;
+            freq = b;
+        }
+    };
+
+    struct compare{
+        bool operator()(node const &a,node const &b){
+            return a.freq < b.freq;
+        }
+    };
+
+    public :
+        vector<int> kthfrequency(vector<int> &nums,int k){
+
+            unordered_map<int,int> mp;
+
+            for(int num : nums){
+                mp[num]++;
+            }
+
+            priority_queue<node,vector<node>,compare> pq;
+
+            for(auto it : mp){
+                pq.push(node(it.first,it.second));
+            }
+
+            vector<int> ans;
+            while(k--){
+                int temp = pq.top();
+                pq.pop();
+                ans.push_back(temp.no);
+            }
+
+            return ans;
+        }
+}

@@ -3,7 +3,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//time complexity Nlogn
+//time complexity NlogN
 void findMajority(int a[],int n){
 
     int len = sizeof(int)*8;

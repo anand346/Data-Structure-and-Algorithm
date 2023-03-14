@@ -10,10 +10,11 @@ int main(){
     q.push(33);
     q.push(156);
     q.push(29);
-
-    cout<<q.size()<<" ";
-    cout<<q.top()<<" ";
+    cout<<"size is "<<q.size()<<endl;
+    cout<<"top element "<<q.top()<<endl;
+    cout<<"popping element"<<endl;
     q.pop();
-    cout<<q.size()<<" ";
+    cout<<"after popping top : "<<q.top()<<endl;
+    cout<<"after popping size : "<<q.size();
     return 0;
 }

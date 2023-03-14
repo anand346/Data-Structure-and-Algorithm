@@ -98,8 +98,8 @@ int main() {
     obj.MinHeapify(i);
   }
 
-  //cout << "Heapified Array :"<<endl;
-  //obj.printArray();
+  cout << "Heapified Array :"<<endl;
+  obj.printArray();
 
   cout << "Heap Sorted Array :" << endl;
   obj.heapSort();

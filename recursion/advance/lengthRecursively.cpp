@@ -11,5 +11,5 @@ int length(char input[]){
 }
 int main(){
     char input[] = "abhishek";
-    cout<<"length is " <<length(input);    
+    cout<<"length is " <<length(input);
 }
