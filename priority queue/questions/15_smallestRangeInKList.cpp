@@ -12,6 +12,10 @@ vector<int> smallestRange(vector<vector<int>>& nums){
         int num = nums[i][0];
         vector<int>vec{num,0,i};
 
+        //0th : minimum element of list
+        //1st : index of element from the list
+        //2nd : index of list
+
         maxi = max(maxi,num);
         pq.push(vec);
     }

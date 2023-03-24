@@ -24,11 +24,11 @@ class Solution {
         }
     };
     struct compare {
-    bool operator()(node a, node b)
-    {
-        return a.curr->val > b.curr->val;
-    }
-};
+        bool operator()(node a, node b)
+        {
+            return a.curr->val > b.curr->val;
+        }
+    };
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         int k = lists.size();

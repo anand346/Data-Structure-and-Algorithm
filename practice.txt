@@ -17098,3 +17098,1002 @@ class Solution{
             return ans;
         }
 }
+
+
+
+void minHeapify(int i){
+    int left = left(i);
+    int right = right(i);
+    int smallest = i;
+
+    if(left < heap_size && harr[left] < harr[i]){
+        smallest = left;
+    }
+    if(right < heap_size && harr[right] < harr[smallest]){
+        smallest = right;
+    }
+
+    if(smallest != i){
+        swap(harr[i],harr[smallest]);
+        minHeapify(smallest);
+    }
+}
+
+int extractMin(){
+
+    if(heap_size <= 0){
+        return INT_MAX;
+    }else if(heap_size == 1){
+        heap_size--;
+        return harr[0];
+    }
+
+    int root = harr[0];
+    harr[0] = harr[heap_size-1];
+    heap_size--;
+    minHeapify(0);
+    return root;
+}
+
+
+
+for(int i = (s/2)-1;i >= 0;i--){
+    minHeapify(i);
+}
+
+
+for(int i = 1;i < n;i++){
+
+    int CI = i;
+    while(CI > 0){
+        int PI = (CI-1)/2;
+        if(harr[CI] < harr[PI]){
+            swap(harr[CI],harr[PI]);
+            CI = PI;
+        }else{
+            break;
+        }
+    }
+}
+
+void minHeapify(int i){
+
+    int left = leftIdx(i);
+    int right = rightIdx(i);
+    int smallest = i;
+
+    if(left < heap_size && harr[left] < harr[i]){
+        smallest = left;
+    }
+    if(right < heap_size && harr[right] < harr[smallest]){
+        smallest = right;
+    }
+    if(smallest != i){
+        swap(harr[i],harr[smallest]);
+        minHeapify(smallest);
+    }
+}
+
+for(int i = (heap_size/2)-1;i >= 0;i++){
+    minHeapify(i);
+}
+
+
+void inplaceHeapsort(int *pq,int n){
+
+    for(int i = 1;i < n;i++){
+        int CI = i;
+        while(CI > 0){
+            int PI = (CI-1)/2;
+            if(harr[CI] < harr[PI]){
+                swap(harr[CI],harr[PI]);
+                CI = PI;
+            }else{
+                break;
+            }
+        }
+    }
+
+    int size = n;
+    while(size >= 1){
+        swap(pq[0],pq[size-1]);
+        size--;
+
+        int pi = 0;
+
+        while(true){
+            int left = leftIdx(i);
+            int right = rightIdx(i);
+            int smallest = pi;
+        }
+    }
+}
+
+
+
+void kSortedArray(int *input,int n,int k){
+
+    priority_queue<int,vector<int>,greater<int>> pq(input,input+k);
+
+    int s = 0;
+    for(int i = k;i < n;i++){
+        input[s] = pq.top();
+        pq.pop();
+        s++;
+        pq.push(input[i]);
+    }
+
+    while(!pq.empty()){
+        input[s] = pq.top();
+        pq.pop();
+        s++;
+    }
+
+}
+
+voi KSortedArray(int *input,int n,int k){
+
+    piority_queue<int,vector<int>,greater<int>> pq(input,input+k);
+
+    int s = 0;
+    for(int i = k;i < n;i++){
+        input[s++] = pq.top();
+        pq.pop();
+        pq.push(input[i]);
+    }
+
+    while(!pq.empty()){
+        input[s++] = pq.top();
+        pq.pop();
+    }
+}
+
+
+int KthLargestElement(int *input,int n,int k){
+
+    priority_queue<int,vector<int>,greater<int>> pq;
+
+    for(int i = 0;i < n;i++){
+        if(pq.size() < k){
+            pq.push(input[i]);
+        }else{
+            if(input[i] > pq.top()){
+                pq.pop();
+                pq.push(input[i]);
+            }
+        }
+    }
+
+    return pq.top();
+}
+
+int KthSmallestElement(int *input,int n,int k){
+
+    priority_queue<int> pq;
+    
+    for(int i = 0;i < n;i++){
+        if(pq.size() < k){
+            pq.push(input[i]);
+        }else{
+            if(input[i] < pq.top()){
+                pq.pop();
+                pq.push(input[i]);
+            }
+        }
+    }
+
+    return pq.top();
+
+
+}
+
+
+int lastStoneWeight(vector<int> &stones){
+
+    int n = stones.size();
+    priority_queue<int> max_heap;
+
+    for(int i = 0;i < n;i++){
+        max_heap.push(stones[i]);
+    }
+
+    int first=0,second=0;
+    while(n > 1){
+        first = pq.top();
+        pq.pop();
+        second = pq.top();
+        pq.pop();
+        n -= 2;
+
+        if(first - second > 0){
+            pq.push(first-second);
+            n += 1;
+        }
+    }
+
+    if(!pq.empty()){
+        return pq.top();
+    }
+}
+
+int lastStoneWeight(vector<int> &stones){
+
+    int n = stones.size();
+    priority_queue<int> pq;
+
+    for(int i = 0;i < n;i++){
+        pq.push(stones[i]);
+    }
+
+    int first,second;
+    while(n > 1){
+        first = pq.top();
+        pq.pop();
+        second = pq.top();
+        pq.pop();
+        n -= 2;
+
+        if(first-second > 0){
+            pq.push(first-second);
+            n += 1;
+        }
+    }
+
+    if(!pq.empty()){
+        return pq.top();
+    }
+}
+
+
+class Solution{
+
+    struct Node{
+        int no;
+        int freq;
+        Node(int a,int b){
+            no = a;
+            freq = b;
+        }
+    };
+
+    struct compare{
+        bool operator()(Node const &a,Node const &b){
+            return a.freq < b.freq;
+        }
+    };
+
+    public :
+        vector<int> topKFrequent(vector<int> nums){
+            unordered_map<int,int> mp;
+            int n = nums.size();
+            vector<int> ans;
+
+            for(int i = 0;i < n;i++){
+                mp[nums[i]]++;
+            }
+
+            priority_queue<Node,vector<Node>,compare> pq;
+
+            for(auto it : mp){
+                pq.push(Node(it.first,it.second));
+            }
+
+            while(k--){
+                Node temp = pq.top();
+                pq.pop(); 
+                ans.push_back(temp.no);
+            }
+
+            return ans;
+        }
+}
+
+vector<int> maxSlidingWindow(vector<int> nums,int k){
+    vector<int> ans;
+
+    priority_queue<int> pq;
+
+    for(int i = 0;i < nums.size();i++){
+        
+        while(!pq.empty() and pq.top().second <= (i-k)){
+            pq.pop();
+        }
+        pq.push(make_pair(nums[i],i));
+        if(i >= (k-1)){
+            ans.push_back(pq.top().first);
+        }
+    }
+
+    return ans;
+}
+
+class Solution{
+
+    struct node{
+        ListNode* curr;
+        int idx;
+        node(ListNode* a,int b){
+            curr = a;
+            idx = b;
+        }
+    };
+
+    struct compare{
+        bool operator()(node const &a,node const &b){
+            return a.curr->val > b.curr->val;
+        }
+    };
+
+    public :
+        ListNode* mergeKList(vector<ListNode*> lists){
+
+            priority_queue<node,vector<node>,compare> pq;
+            int k = lists.size();
+            vector<ListNode*> ptr(k);
+            ListNode* head=tail=NULL;
+
+            for(int i = 0;i < k;i++){
+                ptr[i] = list[i];
+                if(ptr[i] != NULL){
+                    pq.push(node(ptr[i],i));
+                }
+            }
+
+            if(pq.empty()){
+                return NULL;
+            }
+
+            head=tail=pq.top().curr;
+            int idx = pq.top().idx;
+            pq.pop();
+            ptr[idx] = ptr[idx]->next;
+
+            if(ptr[idx]){
+                heap.push(node(ptr[idx],idx));
+            }
+
+            while(!pq.empty()){
+
+                ListNode* temp = pq.top().curr;
+                idx = pq.top().idx;
+
+                pq.pop();
+                
+                tail->next = temp;
+                tail = tail->next;
+
+                ptr[idx] = ptr[idx]->next;
+                if(ptr[idx]){
+                    pq.push(node(ptr[idx],idx));
+                }
+            }
+
+            return head;
+        }
+}
+
+
+class Solution{
+
+    struct node{
+        ListNode* curr;
+        int idx ;
+        node(ListNode* a,int b){
+            curr = a;
+            idx = b;
+        }
+    };
+    struct compare{
+        bool operator()(node const& a,node const& b){
+            return a.curr->val > b.curr->val;
+        }
+    };
+
+    public :
+
+        ListNode* mergeKList(vector<ListNode*> lists){
+
+            int k = lists.size();
+            priority_queue<node,vector<node>,compare> pq;
+            vector<ListNode*> ptr(k);
+            ListNode* head,tail;
+            head=tail=NULL;
+
+            for(int i = 0;i < k;i++){
+                ptr[i] = lists[i];
+                if(ptr[i] != NULL){
+                    pq.push(node(ptr[i],i));
+                }
+            }
+
+            if(pq.empty()){
+                return NULL;
+            }
+
+            head=tail=pq.top().curr;
+            int idx = pq.top().idx;
+            pq.pop();
+            ptr[idx] = ptr[idx]->next;
+
+            if(ptr[idx]){
+                pq.push(node(ptr[idx],idx));
+            }
+
+            while(!pq.empty()){
+
+                ListNode* temp = pq.top().curr;
+                idx = pq.top().idx;
+                pq.pop();
+                tail->next = temp;
+                tail = tail->next;
+
+                ptr[idx] = ptr[idx]->next;
+                if(ptr[idx]){
+                    pq.push(node(ptr[idx],idx));
+                }
+            }
+
+            return head;
+        }
+}
+
+
+int connectTwoRopes(vector<int>& ropes){
+
+    int n = ropes.size();
+    priority_queue<int,vector<int>,greater<int>> pq;
+
+
+    for(int i = 0;i < n;i++){
+        pq.push(ropes[i]);
+    }
+
+    int minCost =0;
+    while(!pq.empty()){
+
+        int first = pq.top();
+        pq.pop();
+        int second = pq.top();
+        pq.pop();
+
+        int tempCost = first+second;
+        minCost = minCost + tempCost;
+        pq.push(tempCost);
+    }
+
+    return minCost;
+}
+
+vector<vector<int>> kClosest(vector<vector<int>> &points,int k){
+
+    priority_queue<pair<int,pair<int,int>>>pq;
+
+    for(int i = 0;i < points.size();i++){
+        int dist = points[i][0]*points[i][0] + points[i][1]*points[i][1];
+        if(pq.size() < k){
+            pq.push({dist,{points[i][0],points[i][1]}});
+        }else{
+            if(dist < pq.top().first){
+                pq.pop();
+                pq.push({dist,{points[i][0],points[i][1]}});
+            }
+        }
+    }
+
+    vector<vector<int>> ans;
+    while(!pq.empty()){
+        ans.push_back({pq.top().second.first,pq.top().second.second});
+        pq.pop();
+    }   
+
+    return ans;
+}
+
+vector<int> kLargestElement(int *input,int n,int k){
+
+    priority_queue<int,vector<int>,greater<int>> pq;
+
+    for(int i = 0;i < n;i++){
+        if(pq.size() < k){
+            pq.push(input[i]);
+        }else{
+            if(input[i] > pq.top()){
+                pq.pop();
+                pq.push(input[i]);
+            }
+        }
+    }
+
+    vector<int> ans;
+    while(k--){
+        ans.push_back(pq.top());
+        pq.pop();
+    }
+    return ans;
+
+}
+
+
+char getMaxCountChar(vector<int> count){
+
+    int mx_count = 0;
+    char ch;
+    for(int i = 0;i < 26;i++){
+        if(count[i] > mx_count){
+            mx_count = count[i];
+            ch = 'a'+i;
+        }
+    }
+
+    return ch;
+}
+
+string rearrangeString(string str){
+
+    int n = str.size();
+    if(!n) return " ";
+
+    vector<int> count(26,0);
+
+    for(int i = 0;i < n;i++){
+        count[str[i]-'a']++;
+    }
+
+    char ch_max = getMaxCountChar(count);
+    int mx_count = count[ch_max-'a'];
+
+    string res(n," ");
+    int idx = 0;
+    while(mx_count){
+        res[idx] = ch_max;
+        idx += 2;
+        mx_count--;
+    }
+    count[ch_max-'a'] = 0;
+
+
+    for(int i = 0;i < 26;i++){
+        while(count[i] > 0){
+            idx = (idx >= n) ? 1 : idx;
+            res[idx] = 'a'+i;
+            idx += 2;
+            count[i]--;
+        }
+    }
+    return res;
+
+}
+
+
+class three{
+    int val;
+    int row;
+    int col;
+    three(int a,int b,int c){
+        val = a;
+        row = b;
+        col = c;
+    }
+};
+
+struct comp{
+    bool operator()(const three &a,const three &b){
+        return a.val > b.val;
+    }
+};
+
+vector<int> solve(vector<vector<int>>& nums){
+
+    int m = nums.size();
+    int n = nums[0].size();
+
+    priority_queue<three,vector<three>,comp> pq;
+    for(int i = 0;i < m;i++){
+        pq.push(three(nums[i][0],i,0));
+    }
+
+    vector<int> ans;
+
+    while(!pq.empty()){
+        three tp = pq.top();
+        pq.pop();
+        int val = tp.val;
+        int row = tp.row;
+        int col = tp.col;
+
+        ans.push_back(val);
+        if((col+1) < m) pq.push(three(nums[row][col+1],row,col+1));
+    }
+
+    return ans;
+}
+
+vector<int> smallestRange(vector<vector<int>> &nums){
+
+    int k = nums.size();
+    int maxi = INT_MIN;
+    vector<int> res = {-100000,100000};
+    priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> pq;
+
+
+    for(int i = 0;i < k;i++){
+        int num = nums[i][0];
+        maxi = max(num,maxi);
+        pq.push({val,0,i});
+    }
+
+
+
+    while(true){
+        vector<int> minVal = pq.top();
+        pq.pop();
+
+        if(res[1]-res[0] > max-minVal[0]){
+            res[1] = maxi;
+            res[0] = minVal[0];
+        }
+
+        minVal[1]++;
+        vector<int> vec2 = nums[minVal[2]];
+        
+        if(minVal[1] == vec2.size()){
+            break;
+        }else{
+            minVal[0] = vec2[minVal[1]];
+            maxi = max(maxi,minVal[0]);
+            pq.push(minVal);
+        }
+
+    }
+    return ans;
+}
+
+
+vector<int> solve(vector<vector<int>> &nums){
+
+    vector<int> res{-100000,100000};
+    int k = nums.size();
+    priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> pq;
+    int maxi = INT_MIN;
+
+    for(int i = 0;i < k;i++){
+        int num = nums[i][0];
+        maxi = max(maxi,num);
+        pq.push({num,0,i});
+    }
+
+    while(true){
+
+        vector<int> minVal = pq.top();
+        pq.pop();
+
+        if(res[1]-res[0] > maxi-minVal[0]){
+            res[1] = maxi;
+            res[0] = minVal[0];
+        }
+
+        minVal[1]++;
+        vector<int> vec2 = nums[minVal[2]];
+
+        if(minVal[1] >= vec2.size()){
+            break;
+        }else{
+            minVal[0] = vec2[minVal[1]];
+            maxi = max(maxi,minVal[0]);
+            pq.push(minVal);
+        }
+    }
+
+    return res;
+}
+
+
+
+
+class MedianFinder{
+    public :
+        priority_queue<int> small;
+        priority_queue<int,vector<int>,greater<int>> big;
+
+        MedianFinder(){
+
+        }
+
+        void addNum(int element){
+            small.push(element);
+            big.push(small.top());
+            small.pop();
+
+            if(big.size() > small.size()){
+                small.push(big.top());
+                big.pop();
+            }
+        }
+
+        int findMedian(){
+            if(small.size() == big.size()){
+                return 0.5*(small.top() + big.top());
+            }
+
+            return small.top();
+        }
+}
+
+
+
+bool isHeap(Node root){
+
+    if(root == NULL) return false;
+
+    queue<Node*> q;
+    bool flag = false;
+    q.push(root);
+
+    while(!q.empty()){
+
+        Node curr = q.front();
+        q.pop();
+
+        if(curr->left){
+            if(flag == 1 || curr->left->data > curr->data){
+                return false;
+            }
+            q.push(curr->left);
+        }else{
+            flag = 1;
+        }
+
+        if(curr->right){
+            if(flag == 1 || curr->right->data > curr->data){
+                return false;
+            }
+            q.push(curr->right);
+        }else{
+            flag = 1;
+        }
+    }
+
+    return true;
+}
+
+
+int minSum(int arr[],int n){
+
+    priority_queue<int,vector<int>,greater<int>> pq(arr,arr+n);
+
+    int a=0,b=0;
+    while(!pq.empty()){
+        a *= 10;
+        a += pq.top();
+        pq.pop();
+
+        if(!pq.empty()){
+            b *= 10;
+            b += pq.top();
+            pq.pop();
+        }
+    }
+    return a+b;
+
+}
+
+
+int left(int i){
+    return (i*2)+1;
+}
+int right(int i){
+    return (i*2)+2;
+}
+void heapify(vector<int> &nums,int i,int n){
+
+    int l = left(i);
+    int r = right(i);
+
+    int largest = i;
+
+    if(l < n && nums[l] > nums[i]){
+        largest = l;
+    }
+    if(r < n && nums[r] > nums[largest]){
+        largest = r;
+    }
+
+    if(largest != i){
+        swap(nums[largest],nums[i]);
+        heapify(nums,largest,n);
+    }
+}
+
+vector<int> maxHeap(vector<int> nums){
+
+    int n = nums.size();
+    int i = (n/2)-1;
+
+    while(i >= 0){
+        heapify(nums,i--,n);
+    }
+
+    return nums;
+}
+
+int helper(string str,int idx){
+
+    char ch = str[idx];
+
+    int sign = 1;
+    int number = 0;
+    int res = 0;
+
+    if(ch == ' '){
+        continue;
+    }else if(ch == '+' || ch == '-'){
+        res += sign*number;
+        number = 0;
+        sign = (ch == '+') ? 1 : -1;
+    }else if(ch == '('){
+        res += sign*helper(str,idx++);
+    }else if(ch == ')'){
+        break;
+    }else{
+        number = number*10+(ch-'0');
+    }
+    return res+(sign*number);
+}
+
+int calculator(string str){
+
+    int res = helper(str,0);
+    return res;
+}
+
+
+char getMaxChar(vector<int> &count){
+
+    char ch;
+    int mx_count = 0;
+
+    for(int i = 0;i < 26;i++){
+        if(mx_count < count[i]){
+            ch = i+'a';
+            mx_count = count[i];
+        }
+    }
+    return ch;
+}
+
+string rearrangeString(string str){
+
+    int n = str.size();
+    vector<int> count(26,0);
+
+    for(int i = 0;i < n;i++){
+        count[str[i]-'0']++;
+    }
+
+    string res(n,"");
+
+    char ch = getMaxChar(count);
+    int mx_count = count[ch-'a'];
+
+    idx = 0;
+    while(mx_count){
+        res[idx] = ch;
+        idx += 2;
+        mx_count--;
+    }
+
+    count[ch-'a'] = 0;
+
+    for(int i = 0;i < 26;i++){
+
+        while(count[i] > 0){
+            idx = (idx >= n) ? 1 : idx;
+            res[idx] = i+'a';
+            idx += 2;
+            count[i]--;
+        }
+    }
+    return res;
+}
+
+
+class node{
+    public :
+        int idx;
+        ListNode* curr;
+        node(ListNode* ptr,int i){
+            curr = ptr;
+            idx = i;
+        }
+}
+
+struct comparator{
+    bool compare()(node const& *a,node const& *b){
+        return a.curr->val > b.curr->val;
+    }
+}
+
+ListNode* mergeKList(vector<ListNode*> lists){
+
+    int k = lists.size();
+    ListNode* head, *tail;
+    vector<ListNode*> ptr;
+    priority_queue<node,vector<node>,comparator> pq;
+
+    for(int i = 0;i < k;i++){
+        ptr[i] = lists[i][0];
+        if(ptr[i]){
+            pq.push(node(ptr[i],i));
+        }
+    }
+
+    if(pq.empty()){
+        return NULL;
+    }
+
+    int idx = 0;
+    head=tail=pq.top().curr;
+    idx = pq.top().idx;
+    pq.pop();
+    ptr[idx] = ptr[idx]->next;
+    if(ptr[idx]){
+        pq.push(node(ptr[idx],idx));
+    }
+
+
+    while(!pq.empty()){
+        ListNode* temp = pq.top().curr;
+        pq.pop();
+
+        tail->next = temp
+        tail = tail->next;
+
+        ptr[idx] = ptr[idx]->next;
+        if(ptr[idx]){
+            pq.push(node(ptr[idx],idx));
+        }
+    }
+    return head;
+}
+
+
+
+
+vector<int> smallestRange(vector<vector<int>>& nums){
+
+    int k = nums.size();
+    vector<int> res = {-100000,100000};
+    int maxi = 0;
+    priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> heap;
+
+    for(int i = 0;i < k;i++){
+        vector<int> vec = {nums[i][0],0,i};
+
+        maxi = max(maxi,nums[i][0]);
+        heap.push(vec);
+    }
+
+
+
+    while(true){
+        vector<int> minval = pq.top();
+        pq.pop();
+
+        if(res[1]-res[0] > maxi-minval[0]){
+            res[0] = minVal[0];
+            res[1] = maxi;
+        }
+
+        minval[1]++;
+        vector<int> vec2 = nums[minval[2]];
+        if(minval[1] == vec2.size()){
+            break;
+        }else{
+            minval[0] = vec2[minval[1]];
+            maxi = max(maxi,vec2[minval[1]]);
+            pq.push(minval);
+        }
+    }
+
+    return res;
+}

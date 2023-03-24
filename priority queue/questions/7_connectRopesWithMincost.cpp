@@ -26,7 +26,8 @@ int connectTwoRopes(vector<int> ropes){
 
     return minCost;
 }
-
+// time complexity : O(NlogN);
+// auxiliary space : O(N);
 int main(){
 
 }

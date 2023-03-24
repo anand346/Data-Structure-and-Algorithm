@@ -23,8 +23,8 @@ class Solution{
                 if(curr->left){
                     if(flag == 1 || curr->left->data > curr->data){
                         return false;
-                        q.push(curr->left);
                     }
+                    q.push(curr->left);
                 }else{
                     flag = 1;
                 }
@@ -32,9 +32,8 @@ class Solution{
                 if(curr->right){
                     if(flag == 1 || curr->right->data > curr->data){
                         return false;
-                        q.push(curr->right);
-
                     }
+                    q.push(curr->right);
                 }else{
                     flag = 1;
                 }

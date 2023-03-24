@@ -2,7 +2,7 @@
 #include<queue>
 using namespace std;
 
-void kSmallestElement(int *input,int n,int k){
+void kthSmallestElement(int *input,int n,int k){
     priority_queue<int> pq;
     for(int i = 0;i < k;i++){
         pq.push(input[i]);
@@ -20,7 +20,7 @@ void kSmallestElement(int *input,int n,int k){
     }
 }
 
-void kSmallestElement2(int *input,int n,int k){ //using min heap
+void kthSmallestElement2(int *input,int n,int k){ //using min heap
     // priority_queue<int,vector<int>,greater<int>> pq; // NlogN
     priority_queue<int,vector<int>,greater<int>> pq(input,input+n); // 0(N)
     for(int i = 0;i < n;i++){
@@ -32,10 +32,10 @@ void kSmallestElement2(int *input,int n,int k){ //using min heap
     }
 }
 
-int kLargestElement(int *input,int n,int k){
+int kthLargestElement(int *input,int n,int k){
 
 
-    priority_queue<int,vector<int>,greater<int>> pq(input,input+n); // 0(N)
+    priority_queue<int,vector<int>,greater<int>> pq; // 0(N)
     for(int i = 0;i < n;i++){
         if(pq.size() < k){
             pq.push(input[i]);
@@ -49,8 +49,9 @@ int kLargestElement(int *input,int n,int k){
 
     return pq.top();
 }
-
+// for largest nd smallest element using heap , time complexity O(NlogK)
+// using merge sort , time complexity O(NlogN)
 int main(){
     int a[] = {5,6,9,12,3,13,2};
-    cout<<kLargestElement(a,7,4);
+    cout<<kthLargestElement(a,7,2);
 }
