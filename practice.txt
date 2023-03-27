@@ -18097,3 +18097,111 @@ vector<int> smallestRange(vector<vector<int>>& nums){
 
     return res;
 }
+
+
+class Trie{
+    public :
+        bool isTerminal;
+        int freq;
+        Trie *chid[26];
+
+        Trie(){
+            isTerminal = false;
+            freq = 0;
+            for(int i = 0;i < 26;i++){
+                child[i] = NULL;
+            }
+        }
+};
+
+void buildTree(string word,Trie* root){
+
+    Trie* curr = root;
+    for(int i = 0;i < word.size();i++){
+        if(curr->child[word[i]-'a'] == NULL){
+           curr->child[word[i]-'a']->freq++;
+           curr->child[word[i]-'a'] = new Trie();
+           curr = curr->child[word[i]-'a'];
+        }else{
+            curr->child[word[i]-'a']->freq++;
+            curr = curr->child[word[i]-'a'];
+        }
+    }
+}
+
+string buildPrefix(string word,Trie* root){
+    Trie* curr;
+    string ans = "";
+    for(int i =0i < word.size();i++){
+        if(curr->child[word[i]-'a'] == 1){
+            ans += word[i];
+            break;
+        }else{
+            ans += word[i];
+            curr = curr->child[word[i]-'a'];
+        }
+    }
+
+    return ans;
+}
+
+vector<string> findPrefix(vector<string> words){
+    Trie* root ;
+    vector<string> ans;
+    for(int i = 0;i < words.size();i++){
+        buildTree(words[i],root);
+    }
+
+    for(int i = 0;i < words.size();i++){
+        ans.push_back(buildPrefix(words[i],root));
+    }
+
+    return ans;
+
+}
+
+
+bool payingUp(vector<int> nums){
+    int n = nums.size();
+
+    int total = 1<<n;
+
+    for(int k = 1;k < total;k++){
+        int sum = 0;
+        for(int i = 0;i < n;i++){
+            if(k&(1<<i)){
+                sum += nums[i];
+            }
+        }
+
+        if(sum == m){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+string additionOfBitString(string str1, string str2){
+
+    int i = str1.lenght()-1;
+    int j = str2.lenght()-1;
+
+    int carry = 0;
+    string ans = "";
+    while(i >= 0 || j >= || carry){
+        carry += (i >= 0) ? str1[i--]-'0' : 0;
+        carry += (j >= 0) ? str2[j--]-'0' : 0;
+        ans = char('0'+carry%2)+ans;
+        carry /= 2;
+    }
+
+    return ans;
+}
+
+int swapBits(int x,int p1,int p2,int n){
+
+    int hello = ((x>>p1)^(x>>p2))&((1<<n)-1);
+    return x^(hello<<p1 | hello<<p2);
+}
+

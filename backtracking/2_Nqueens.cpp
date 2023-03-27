@@ -30,8 +30,8 @@ int main(){
     int n;
     cin>>n; // input should be 4
 
-    bool board[n][4] = {false};
-    bool cols[n] = {false};
+    bool board[n][4]    = {false};
+    bool cols[n]        = {false};
     bool ndiag[(2*n)-1] = {false};
     bool rdiag[(2*n)-1] = {false}; 
 

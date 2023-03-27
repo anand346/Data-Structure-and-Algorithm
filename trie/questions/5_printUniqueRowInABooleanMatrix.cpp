@@ -43,5 +43,23 @@ bool insert(Trie*& head,bool *arr){
 
 
 int main(){
-
+    bool mat[M][N] =
+    {
+        {1, 0, 0, 1, 0},
+        {0, 1, 1, 0, 0},
+        {1, 0, 0, 1, 0},
+        {0, 0, 1, 1, 0},
+        {0, 1, 1, 0, 0}
+    };
+ 
+    // insert all rows of the matrix into a Trie
+    Trie* head = getNewTrieNode();
+    for (int i = 0; i < M; i++)
+    {
+        if (!insert(head, mat[i])) {
+            cout << "Duplicate row found: Row #" << i + 1 << endl;
+        }
+    }
+ 
+    return 0;
 }

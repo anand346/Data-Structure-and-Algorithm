@@ -1,3 +1,5 @@
+// alisha parveen
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -25,7 +27,10 @@ class Solution{
         void buildTrie(string word,Trie *root){
             Trie* curr = root;
             for(int i = 0;i < word.length();i++){
-                if(curr->child[word[i]-'a'] == NULL){
+                if(curr->child[word[i]-'a'] != NULL){
+                    curr->child[word[i]-'a']->freq++;
+                    curr = curr->child[word[i]-'a'];
+                }else{
                     curr->child[word[i]-'a']->freq++;
                     curr->child[word[i]-'a'] = new Trie();
                     curr = curr->child[word[i]-'a'];
@@ -37,9 +42,13 @@ class Solution{
             Trie* curr = root;
             string ans = "";
             for(int i = 0;i < word.length();i++){
-                if(curr->freq == 1) break;
-                ans += word[i];
-                curr = curr->child[word[i]-'a'];
+                if(curr->child[word[i]-'a']->freq == 1){
+                    ans += word[i];
+                    break;
+                }else{
+                    ans += word[i];
+                    curr = curr->child[word[i]-'a'];
+                }
             }
             return ans;
         }

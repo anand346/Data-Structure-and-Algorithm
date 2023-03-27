@@ -2,73 +2,113 @@
 using namespace std;
 
 
-class Trie{
+// using recursion
+
+int check(string var) 
+{ 
+    string array[] = {"mobile","microwave","television","refrigerator","mob","vision","wave","i","use","ac","fridge"}; 
+    int size = sizeof(array)/sizeof(array[0]); 
+    for (int j = 0; j < size; j++) 
+        if (array[j].compare(var) == 0) 
+           return true; 
+    return false; 
+} 
+bool divide(string ch) 
+{ 
+    int size = ch.size(); 
+    if (size == 0)  
+        return true; 
+    for (int i=1; i<=size;i++) 
+    { 
+        if (check(ch.substr(0,i)) && divide(ch.substr(i,size-i))) 
+            return true; 
+    } 
+    return false; 
+} 
+int main() 
+{ 
+    string ch;
+    cout<<"enter string\n";
+    cin>>ch;
+    if(divide(ch))
+        cout<<"yes";
+    else
+        cout<<"no";
+    return 0; 
+}
+
+
+// using trie
+
+class TrieNode{
     public :
-        char data;
-        Trie *child[26];
+        TrieNode *child[26];
         bool isTerminal;
+};
 
-        Trie(char ch){
-            data = ch;
-            for(int i = 0;i < 26;i++){
-                child[i] == NULL;
-            }
-            isTerminal = false;
-        }
+TrieNode* getNode(){
+    TrieNode* root = new TrieNode();
+    root->isTerminal = false;
+    for(int i = 0;i < 25;i++){
+        root->child[i] = NULL;
+    }
+    return root;
 }
 
-class Solution{
-    public :
-        
-        void add(Trie* root,string word){
-            Trie* curr = root;
-            for(int i = 0;i < 26;i++){
-                int index = word[i]-'a';
-                if(curr->child[index] == NULL){
-                    curr->child[index]->data = ch;
-                    curr->child[index] = new Trie();
-                }
-                curr = curr->child[index];
+class Solution
+{
+public:
+    void add(TrieNode *root, string s){
+        TrieNode* curr = root;
+
+        for(int i = 0;i < s.length();i++){
+            if(curr->child[s[i]-'a'] == NULL){
+                curr->child[s[i]-'a'] = getNode();
             }
-            curr->isTerminal = true;
+
+            curr = curr->child[s[i]-'a'];
         }
 
-        bool search(Trie*root , string word){
-            Trie* curr = root;
-            for(int i = 0;i < 26;i++){
-                int index = word[i]-'a';
-                if(curr->child[index] == NULL){
-                    return false;
-                }
-                curr = curr->child[index];
+        curr->isTerminal = true;
+
+    }
+
+    bool search(TrieNode* root,string s){
+        TrieNode* curr = root;
+
+        for(int i = 0;i < s.length();i++){
+            if(curr->child[s[i]-'a'] == NULL){
+                return false;
             }
-            return curr->isTerminal;
+
+            curr = curr->child[s[i]-'a'];
         }
 
-        void wordBreakUtil(Trie* root,string word){
-            if(word.length() == 0) return ;
+        return curr != NULL && curr->isTerminal;
+    }
 
-            for(int i = 1;i < word.length();i++){
-                if(search(root,word.substr(0,i)) && wordBreakUtil(root,word.substr(i,word.length()-1))){
-                    return true;
-                }
-            }
-            return false;
+    bool wordcheck(TrieNode* root,string s){
+        if(s.length()==0) return true;
+    
+        for(int i=1;i<=s.length();i++){
+            if(search(root,s.substr(0,i)) && wordcheck(root,s.substr(i,s.length()-i)))
+                return true;
+        }
+        return false;
+    }
+    int wordBreak(string word, vector<string> &words) {
+        //code here
+        TrieNode* root = getNode();
+        for(int i = 0;i < words.size();i++){
+            add(root,words[i]);
         }
 
-        int wordBreak(string word,vector<string>& words){
-            Trie* root = new Trie('\0');
-            for(int i = 0;i < words.size();i++){
-                add(root,words[i]);
-            }
-
-            if(wordBreakUtil(root,words[i])){
-                return 1;
-            }else{
-                return 0;
-            }
+        if(wordcheck(root,word)){
+            return 1;
         }
-}
+        return 0;
+    }
+};
 
 int main(){
 
