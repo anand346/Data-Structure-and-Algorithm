@@ -23,7 +23,7 @@ long long numberOfPath(int m,int n){
 }
 
 
-long logn numberOfPath(int m,int n){
+long long numberOfPath(int m,int n){
     vector<int> mat(n,1);
     for(int i = 0;i < m-1;i++){
         for(int j = 1;j < n;j++){

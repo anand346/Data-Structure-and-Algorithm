@@ -38,7 +38,7 @@ bool insert(Trie*& head,bool *arr){
         return false;
     }
 
-    return curr->isTerminal;
+    return curr->isTerminal = true;
 }
 
 

@@ -16,7 +16,7 @@ class Solution{
 
 
         int largest = i;
-        if(left < n && v[left] > v[i]){
+        if(left < n && v[left] > v[largest]){
             largest = left;
         }
         if(right < n && v[right] > v[largest]){

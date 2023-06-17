@@ -8,21 +8,17 @@
 #include<bits/stdc++.h>
 using namespace std;
 int getPairsCount(int arr[], int n, int k) {
-    int j = 0;
+    // code here
+    unordered_map<int,int> mp;
     int count = 0;
     for(int i = 0;i < n;i++){
-        if(i != j){
-            if(arr[i] + arr[j] == k){
-                count++;
+        
+        if(arr[i] < k){
+            int element = k - arr[i];
+            if(mp.find(element) != mp.end()){
+                count += mp[element];
             }
-        }
-        if(i == (n-1)){
-            j++;
-            i = j;
-            if(j == (n-1)){
-                break;
-            }
-            continue;
+            mp[arr[i]]++;
         }
     }
     return count;

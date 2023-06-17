@@ -30,4 +30,4 @@ int main(){
     //printSteps(n,'A','C','B');
     printSteps1(n,'A','B','C');
     cout<<endl<<endl;
-}
+} 

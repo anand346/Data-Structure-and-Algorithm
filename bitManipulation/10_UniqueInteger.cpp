@@ -12,5 +12,4 @@ int main(){
         ans = ans^a[i];
     }
     cout<<ans;
-    
 }

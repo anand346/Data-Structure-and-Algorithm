@@ -1,6 +1,9 @@
 
 // https://youtu.be/Q1fLW_zQr3M
 
+
+// we need to print division of an array such that the difference of both the divisions is minium among all the divisions
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -46,4 +49,32 @@ int main(){
     Solution s;
     cout<<s.tugOfWar(arr);
     
+}
+
+
+
+
+
+// same approach in different way
+
+int minDiff;
+void getPartition(vector<int> &A, int selectedStudents, int start, int currSum, int totalSum) {
+	if (start == A.size()) {
+		return;
+	}
+	if (selectedStudents == A.size()/2) {
+		minDiff = min(minDiff, abs(totalSum - 2 * currSum));
+		return;
+	}
+	getPartition(A, selectedStudents + 1, start + 1, currSum + A[start], totalSum);
+	getPartition(A, selectedStudents, start + 1, currSum, totalSum);
+}
+int divideGroup(vector<int> &A) {
+	int totalSum = 0;
+	for (int i = 0; i < A.size(); i++) {
+		totalSum += A[i];
+	}
+	minDiff = INT_MAX;
+	getPartition(A, 0, 0, 0, totalSum);
+	return minDiff;
 }

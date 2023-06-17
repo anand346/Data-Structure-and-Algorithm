@@ -9,6 +9,7 @@ vector<int> intersection(vector<int> &nums1,vector<int> &nums2){
     for(int b : nums2){
         if(inMap[b]-- > 0){
             out.push_back(b);
+            inMap[b] = 0;
         }
     }
     return out;

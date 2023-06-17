@@ -32,6 +32,33 @@ void print_subs2(char input[], char output[], int i){
 
 }
 
+vector<string> AllPossibleStrings(string s){
+		    // Code here
+    int n = s.length();
+    vector<string> ans;
+    int total = 1<<n;
+    
+    
+    for(int num = 0;num < total;num++){
+        string sub = "";
+        for(int i = 0;i < n;i++){
+            if(num&(1<<i)){
+                sub += s[i];
+            }
+        }
+        
+        if(sub.length() > 0){
+            ans.push_back(sub);
+        }
+    }
+    sort(ans.begin(),ans.end());
+    return ans;
+}
+// time complexity of above approach O(n*2^n);
+// space complexity of above approach O(1)
+
+
+
 int main(){
     string name = "ab";
     string output = "";
