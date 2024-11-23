@@ -13,6 +13,35 @@ int partition(int a[],int s,int e){
     swap(a[e],a[i]);
     return i;
 }
+
+int partition_using_first_element_as_pivot(int a[],int s,int e){
+    int i = s;
+    int pivot = a[s];
+
+    for(int j = s+1; j <= e; j++){
+        if(a[j] <= pivot){
+            i++;
+            swap(a[j],a[i]);
+        }
+    }
+    swap(a[s],a[i]);
+    return i;
+}
+
+int partition_using_first_element_as_pivot2(int arr[], int low, int high) {
+    int pivot = arr[low];
+    int i = low;
+
+    for (int j = low + 1; j <= high; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[low], arr[i]);
+    return i;
+}
+
 void quickSort(int a[],int s,int e){
     if(s >= e){
         return ;

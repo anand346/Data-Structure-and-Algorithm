@@ -15,7 +15,7 @@ string longestCommonPrefix(string s[],int n){
 
 
     bool flag = true;
-    int count = 0;
+    int count = -1;
     for(int i = 0;i < minLength;i++){
         for(int j = 0;j < n;j++){
             if(s[j][i] != S[i]){

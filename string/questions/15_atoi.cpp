@@ -25,10 +25,10 @@ int MYatoi(string str){
     bool isNegative = false;
     double result = 0;
 
-    if(str[0] == '-' || str[0] == '+'){
+    if(str[startIndex] == '-' || str[startIndex] == '+'){
         ++startIndex;
     }
-    if(str[0] == '-'){
+    if(str[startIndex] == '-'){
         isNegative = true;
     }
 

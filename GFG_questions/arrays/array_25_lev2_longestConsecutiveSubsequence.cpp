@@ -1,7 +1,7 @@
 // Input:
 // N = 7
 // a[] = {2,6,1,9,4,5,3}
-// a[] = {22,6,8,9,4,5,3}
+// a[] = {23,6,8,9,4,5,3}
 // Output:
 // 6
 // Explanation:
@@ -27,10 +27,10 @@ int findLongestConseqSubseq(int arr[], int n){
             continue;
         }else{
             int count = 0;
-            int current = arr[i];
+            int current = arr[i]; //4
             while(s.find(current) != s.end()){
-                count++;
-                current++;
+                count++;  //3
+                current++; //7
             }
             ans = max(count,ans);
         }

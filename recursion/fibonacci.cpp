@@ -53,11 +53,11 @@ void fib(int n){
         e2 = number;
     }
 }
-int count(int n){
+int countNoOfDigit(int n){
     if(n/10 == 0){
         return 1;
     }
-    int result =  count(n/10);
+    int result =  countNoOfDigit(n/10);
     return result + 1;
 }
 int sumOfDigits(int n){

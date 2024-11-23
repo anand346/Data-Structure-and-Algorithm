@@ -27,7 +27,7 @@ vector<int> duplicates(int arr[], int n){
 }
 int main(){
     int arr[] = {2,3,1,2,3,3,2,2};
-    vector<int> result = duplicates(arr,5);
+    vector<int> result = duplicates(arr,8);
     for(int i = 0;i < result.size();i++){
         cout<<arr[i]<<" ";
     }

@@ -3,7 +3,7 @@ using namespace std;
 
 // string str = "amazon";
 
-int distinctSubsequence(string str1,string str2){
+int checkRotation(string str1,string str2){
 
     int len1 = str1.length();
     int len2 = str2.length();
@@ -20,9 +20,11 @@ int distinctSubsequence(string str1,string str2){
 
     temp1.append(str1.substr(2,len1-2));
     temp1.append(str1.substr(0,2));
+    cout<<temp1<<endl;
 
     temp2.append(str2.substr(len1-2,2));
     temp2.append(str2.substr(0,len1-2));
+    cout<<temp2<<endl;
 
     if(temp1 == str2 || temp2 == str2){
         return true;
@@ -32,5 +34,8 @@ int distinctSubsequence(string str1,string str2){
 }
 int main(){
 
+    string str1 = "amazon";
+    string str2 = "azonam";
 
+    cout<<checkRotation(str1,str2);
 }

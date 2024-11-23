@@ -35,7 +35,8 @@ class Solution{
                 newHead = newHead->next;
             }else{
                 prev->next=newHead->next;
-                newHead=prev->next;
+                // newHead=prev->next;
+                newHead=newHead->next;
             }
         }
         Node *prevHead = reverseLL(newHead);

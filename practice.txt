@@ -18540,3 +18540,1603 @@ int helper(string str,int idx){
         
     }
 }
+
+
+
+vector<pair<int,string>> pad = {{1000000000,"billion"},{1000000,"million"},{1000,"thousand"},{100,"hundred"},{90,"neinty"},{80,"eighty"},{70,"seventy"},{60,"sixty"},{50,"fifty"},{40,"fourty"},{30,"thirty"},{20,"twenty"},{19,"neinteen"},{18,"eighteen"},{17,"seventeen"},{16,"sixteen"},{15,"fifteeen"},{14,"fourteen"},{13,"thirteen"},{12,"twelve"},{11,"eleven"},{10,"ten"},{9,"nine"},{8,"eight"},{7,"seven"},{6,"six"},{5,"five"},{4,"four"},{3,"three"},{2,"two"},{1,"one"}};
+
+
+string numToWords(int n){
+
+    if(n == 0){
+        return "zero";
+    }
+
+    for(auto it : pad){
+        if(n >= it.first){
+            (n >= 100 ? numToWords(n/it.first)+" " : "") + it.second + (n%it.first == 0 ? "" : " " + numToWords(n%it.first));
+        }
+    }
+
+    return "";
+}
+
+
+int helper(string s,int idx){
+
+    int result = 0;
+    int indicator = 1;
+    int number = 0;
+
+    for(;idx < s.size();idx++){
+
+        char c = s[idx];
+
+        if(c == ' '){
+            continue;
+        }else if(c == '-' || c == '+'){
+            res += sign*(number);
+            number = 0;
+            sign = c == '-' ? -1 : 1;
+        }else if(c == '('){
+            res += sign*(helper(s,++idx));
+        }else if(c == ')'){
+            break;
+        }else{
+            res += number*10+(c-'0');
+        }
+    }
+
+    return res+(sign*number);
+}
+int basicCalc(string s){
+
+    return helper(s,0);
+}
+
+int myAtoi(string s){
+
+    if(s.length() == 0){
+        return 0;
+    }
+    if(s.length() == 1){
+        if(isdigit(s[0])){
+            return s[0]-'0';
+        }else{
+            return 0;
+        }
+    }
+
+    int i = s.find_first_not_of(" ");
+    int indicator = 1;
+    int result = 0;
+    if(i == -1){
+        return 0;
+    }
+    indicator = s[i++] == '-' ? -1 : 1;
+
+    while(isdigit(s[i])){
+
+        result = result*10+(s[i++]-'0');
+        if(result*indicator >= INT_MAX){
+            return INT_MAX;
+        }else if(result*indicator <= INT_MIN){
+            return INT_MIN;
+        }
+    }
+    return result*indicator;
+
+}
+
+
+int length(char str[]){
+
+    if(str[n-1] == '\0'){
+        return 0;
+    }
+
+    return length(str+1)+1;
+}
+
+
+void print_subs(string input,string output){
+    if(input.lenght() == 0){
+        cout<<output<<" ";
+    }
+
+    print_subs(input.substr(0,1),output+input[0]);
+    print_subs(input.substr(0,1),output);
+}
+
+
+vector<vector<string>> ans;
+void print_permu(string input,ind idx,int n){
+
+    if(idx == n){
+        ans.push_back(input);
+        return ;
+    }
+
+    for(int i = idx;i < input.size();i++){
+        swap(input[i],input[idx]);
+        print_permu(input,i+1,n);
+        swap(input[i],input[idx]);
+    }
+}
+
+
+void print_permu_2(string input,int idx,int n){
+
+    if(idx == n){
+        ans.push_back(input);
+        return ;
+    }
+    
+    set<char> s;
+    for(int i = idx;i < n;i++){
+        if(s.find(input[i]) == s.end()){    
+            swap(input[i],input[idx]);
+            print_permu_2(input,i+1,n);
+            swap(input[i],input[idx]);
+            s.insert(input[i]);
+        }
+    }
+
+}
+
+
+
+
+
+void reverseInsert(stack<int> &st,int key){
+    if(st.empty()){
+        st.push(key);
+        return ;
+    }
+
+    int top = st.top();
+    st.pop();
+
+    reverseInsert(st,key);
+
+    st.push(top);
+}
+
+
+
+void reverse(stack<int> &st){
+
+    if(st.empty()){
+        return ;
+    }
+
+    int top = st.top();
+    st.pop();
+
+    reverse(st);
+
+    reverseInsert(st,top);
+}
+
+
+
+void insertSorted(stack<int> &st,int key){
+    if(st.empty() || key >= st.top()){
+        st.push(key);
+        return ;
+    }
+
+    int top = st.top();
+    st.pop();
+
+    insertSorted(st,key);
+
+    st.push(top);
+}
+
+void sortStack(stack<int> &st){
+    if(st.empty()){
+        return ;
+    }
+
+    int top = st.top();
+    st.pop();
+
+    sortStack(st);
+
+    insertSorted(st,top);
+}
+
+
+
+helper(vector<int> &nums,int sum,vector<vector<int>> ans,int currIdx){
+
+    ans.push_back(sum);
+    for(int i = currIdx;i < nums.size();i++){
+        ans += nums[i];
+        helper(nums,sum,ans,i+1);
+        ans -= nums[i];
+    }
+}
+
+
+
+
+
+void subsets(vector<int> &nums){
+    vector<vector<int>> ans;
+    
+    helper(nums,0,ans,0);
+    return ans;
+}
+
+
+void findMajority(int arr[],int n){
+
+    int total = sizeof(int)*8;
+    int number = 0;
+
+    for(int i = 0;i < len;i++){
+        int count = 0;
+        for(int j = 0;j < n;j++){
+
+            if(arr[j]&(1<<i)){
+                count++;
+            }
+        }
+
+        if(count > (n/2)){
+            number += (1<<i);
+        }
+    }
+
+    int count = 0;
+
+    for(int j = 0;j < n;j++){
+        if(number == arr[j]){
+            count++;
+        }
+    }
+
+    if(count >= (n/2)){
+        return number;
+    }else{
+        return -1;
+    }
+}
+
+void solution(string str,string temp,int count,int pos){
+
+    if(pos == str.length()){
+        if(count > 0){
+            cout<<asf+char('0'+count)+str[pos]
+        }
+    }
+}
+
+void arrange(int arr[],int n){
+
+    int s = 0;
+    int e =  n-1;
+
+    while(s <= e){
+        if(arr[s] < 0 && arr[e] < 0){
+            s++;
+        }
+        if(arr[s] < 0 && arr[e] > 0){
+            e--;
+        }
+        if(arr[s] > 0 && arr[e] > 0){
+            s++;
+            e--;
+        }
+        if(arr[s] > 0 && arr[e] < 0){
+            swap(arr[s],arr[e]);
+            e--;
+            s++;
+        }
+    }
+}
+
+
+
+string twoSum(vector<int> &nums,int target){
+    sort(nums.begin(),nums.end());
+
+    int n = nums.size();
+    int left = 0,right = 0;
+    while(right < n){
+        int sum = nums[left] + nums[right];
+        if(sum == target){
+            return "yes";
+        }else if(sum > target){
+            right--;
+        }else{
+            left++;
+        }
+    }
+    return "No";
+}
+
+void sort012(vector<int> &nums){
+    int n = nums.size();
+    int low = 0,mid = 0,high = n-1;
+
+    while(mid <= high){
+        if(nums[mid] == 0){
+            swap(nums[low++],nums[mid]);
+        }else if(nums[mid] == 1){
+            mid++;
+        }else{
+            swap(nums[mid],nums[high]);
+        }
+    }
+}
+
+int stockBuyAndSell(vector<int> &nums){
+
+    int n = nums.size();
+    int min = INT_MAX;
+    int pist = 0;
+    int op = 0;
+    for(int i = 0;i < n;i++){
+        if(nums[i] < min){
+            min = nums[i];
+        }
+
+        pist = nums[i] - min;
+        if(pist > op){
+            op = pist;
+        }
+    }
+    return op;
+}
+
+
+
+vector<int> nextPermutation(vector<int> &a){
+    int n = a.size();
+    int ind = -1;
+
+    for(int i = n-2;i >= 0;i--){
+        if(a[i] < a[i+1]){
+            ind = i;
+            break;
+        }
+    }
+
+    if(ind == -1){
+        reverse(a.begin(),a.end());
+        return a;
+    }
+
+    for(int i = n-1;i > ind;i--){
+        if(a[i] > a[ind]){
+            swap(a[i],a[ind]);
+            break;
+        }
+    }
+
+    reverse(a.begin()+ind+1,a.end());
+    return a;
+}
+
+
+string reverseString(string word){
+
+    int cnt = 0;
+    int i = 0;
+    reverse(word.begin(),word.end());
+    for(;i < word.length();i++){
+        if(word[i] == '.'){
+            reverse(word.begin()+cnt,word.begin()+i);
+            cnt = i+1;
+        }
+    }
+    reverse(word.begin()+cnt,word.begin()+i);
+    return word;
+}
+
+
+string longestCommonPrefix(string s[],n){
+
+    string S = "";
+    int minLength = INT_MAX;
+
+    for(int i = 0;i < n;i++){
+        if(s[i].length() < minLength){
+            minLength = s[i].length();
+            S = s[i];
+        }
+    }
+
+    int count = -1;
+    bool flag = true;
+    for(int i = 0;i < minLength;i++){
+        for(int j = 0;j < n;j++){
+            if(s[j][i] != S[i]){
+                flag = false;
+            }
+        }
+        if(flag == false){
+            break;
+        }
+        count++;
+    }
+    if(count == -1){
+        return "-1";
+    }
+
+    return S.substr(0,count);
+}
+
+int romanToInt(string s){
+    int result = 0;
+    unordered_map<char,int> mp = {{'I',1},{'V',5},{'X',10},{'L',50},{'C',100},{'D',500},{'M',1000}};
+    for(int i = s.length()-1;i >=0;i--){
+        if(mp[s[i]]*4 > result){
+            result += mp[s[i]];
+        }else{
+            result -= mp[s[i]];
+        }
+    }
+    return result;
+}
+
+
+string intToRoman(int num){
+    string code[] = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+    int intCode[] = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+
+    itn size = sizeof(code)/sizeof(code[0]);
+    string result = "";
+    for(int i = 0;i < size;i++){
+        while(num >= intCode[i]){
+            result += code[i];
+            num -= intCode[i];
+        }
+    }
+    return result;
+}
+
+
+int shortestDistance(string first,string sec,vector<string> s){
+    int firstPlace = -1;
+    int secondPlace = -1;
+    int minDistance = INT_MAX;
+    int n = s.size();
+
+    for(int i = 0;i < n;i++){
+        if(s[i] == first){
+            firstPlace = i;
+        }
+        if(s[i] == sec){
+            secondPlace = i;
+        }
+
+        if(firstPlace != -1 && secondPlace != -1){
+            minDistance = min(minDistance,abs(firstPlace-secondPlace));
+        }
+    }
+    return minDistance;
+}
+
+
+bool divisibleBy7(string s){
+
+    int num = 0;
+    for(int i = 0; i < s.length();i++){
+        num = num*10 + s[i]-'0';
+        num %= 7;
+    }
+
+    if(num == 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+string encryptString(string s){
+    char on = s[0];
+    int count = 1;
+    string ans = "";
+    for(int i = 1;i < s.length();i++){
+        if(s[i] == s[i-1]){
+            count++;
+        }else{
+            ans += on;
+            string hx = "";
+            while(count != 0){
+                int rem = count%16;
+                if(rem < 10){
+                    hx += ('0'+rem);
+                }else{
+                    hx += 'a'+(rem-10);
+                }
+                count /= 16;
+            }
+
+            ans += hx;
+            on = s[i];
+            count = 1;
+
+        }
+    }
+
+    if(ans == ""){
+        ans += on;
+        string hx = "";
+        while(count != 0){
+            int rem = count%16;
+            if(rem < 10){
+                hx += ('0'+rem);
+            }else{
+                hx += 'a'+(rem-10);
+            }
+            count /= 16;
+        }
+
+        ans += hx;
+    }
+    return reverse(ans.begin(),ans.end());
+
+}
+
+bool areIsomorphic(string str1,string str2){
+
+    unordered_map<char,char> mp1;
+    unordered_map<char,bool> mp2;
+
+    if(str1.length() != str2.length()){
+        return false;
+    }
+    for(int i = 0;i < str1.length();i++){
+        char ch1 = str1[i];
+        char ch2 = str2[i];
+
+        if(mp1.find(ch1) != mp.end()){
+            if(mp1[ch1] != ch2){
+                return false;
+            }
+        }else{
+            if(mp2[ch2] == true){
+                return false;
+            }else{
+                mp1[ch1] = ch2;
+                mp2[ch2] = true;
+            }
+        }
+    }
+}
+
+
+bool areKAnagram(string str1,string str2,int k){
+
+    unordered_map<char,int> mp;
+    int count = 0;
+
+    if(str1.length() != str.length()){
+        return false;
+    }
+    for(int i = 0;i < str1.length();i++){
+        mp[str1[i]]++;
+    }
+
+    for(int i = 0;i < str2.length();i++){
+        if(mp[str2[i]] == 0){
+            count++;
+        }else{
+            mp[str2[i]]--;
+        }
+    }
+
+    if(count <= k){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+bool checkPanagram(string s){
+
+    bool alList[27];
+
+    for(int i = 0;i < s.length();i++){
+        if(s[i] >= 'A' && s[i] <= 'Z'){
+            int ind = s[i]-'A';
+            alList[ind] = true;
+        }else if(s[i] >= 'a' && s[i] <= 'z'){
+            int ind = s[i]-'a';
+            alList[ind] = true;
+        }
+    }
+
+    bool ans = true;
+    for(int i = 0;i <= 25;i++){
+        if(alList[i] == false){
+            ans = false;
+            break;
+        }
+    }
+    return ans;
+}
+
+
+int helper(string str,int s,int e){
+
+    if(s >= e){
+        return 0;
+    }
+    if(str[s] == str[e]){
+        return helper(str,s+1,e-1);
+    }
+
+    return min(helper(str,s+1,e),helper(str,s,e-1));
+}
+int minDeletion(string str){
+    int result = 0;
+    int n = str.length();
+    result = helper(str,0,n-1);
+    return result;
+}
+
+bool checkRotation(string str1,string str2){
+
+    int len1 = str1.length();
+    int len2 = str2.length();
+
+    if(len1 < 2 || len2 < 2){
+        if(str1 == str2){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    string temp1,string temp2;
+
+    temp1.append(str1.substr(2,len1-2));
+    temp1.append(str1.substr(0,2));
+
+    temp2.append(str2.substr(len1-2,2));
+    temp2.append(str2.substr(0,len1-2));
+
+    if(temp1 == str2 || temp2 == str2){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+int myatoi(string str){
+
+    if(str.length() == 0){
+        return 0;
+    }
+
+    if(str.length() == 1){
+        if(isdigit[str[0]]){
+            return str[0]-'0';
+        }else{
+            return 0;
+        }
+    }
+
+    int i = str.find_first_not_of(" ");
+
+    if(i == -1){
+        return 0;
+    }
+
+    int result = 0;
+    int indicator = 1;
+
+    indicator = str[i++] == '-' ? -1 : 1;
+
+    while(isdigit(str[i])){
+        result = result*10 + str[i++]-'0';
+
+        if(result*indicator >= INT_MAX){
+            return INT_MAX;
+        }else if(result*indicator <= INT_MIN){
+            return INT_MIN;
+        }
+    }
+    return result*indicator;
+}
+
+
+
+bool isValid(string str){
+
+    int counter = 0;
+
+    for(int i = 0;i < str.length();i++){
+        if(str[i] == '.'){
+            counter++;
+        }
+    }
+
+    if(counter != 3){
+        return false;
+    }
+
+    unordered_set<int> st;
+    counter = 0;
+
+    for(int i = 0;i < 256;i++){
+        st.insert(to_string(i));
+    }
+
+    string temp = "";
+    for(int i = 0;i < str.length();i++){
+        if(str[i] != '.'){
+            temp += str[i];
+        }else{
+            if(st.count(temp) != st.end()){
+                counter++;
+                temp = "";
+            }
+        }
+    }
+
+    if(st.count(temp) != st.end()) counter++;
+    if(counter != 4) return false;
+    else return true;
+}
+
+string keyFormatting(string s,int k){
+
+    int counter = 0;
+    string result = "";
+    for(int i = s.length()-1;i >= 0;i--){
+        if(s[i] != '-'){
+
+            if(counter == k){
+                result += '-';
+                counter = 0;
+            }
+
+            counter++;
+            if(s[i] >= 'a' && s[i] <= 'z'){
+                s[i] = 'A'-'a';
+            }
+
+            result += s[i];
+
+        }
+    }
+
+    reverse(result.begin(),result.end());
+}
+
+
+Node* reverseLL(Node* head){
+
+    Node* prev = NULL;
+    Node* curr = head;
+    while(curr != NULL){
+        Node* n = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = n;
+    }
+
+    return prev;
+}
+
+Node* middleLL(Node* head){
+    Node* slow = head;
+    Node* fast = head->next;
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    if(fast != NULL){
+        return slow->next->data;
+    }
+    return slow->data;
+}
+
+
+Node* removeKthNode(Node* head,int k){
+    Node* first = head;
+    Node* second = head;
+    while(k--){
+        second = second->next;
+    }
+
+    if(second == NULL){
+        return first->next;
+    }
+
+    while(second->next != NULL){
+        first = first->next;
+        second = second->next;
+    }
+    first->next = first->next->next;
+    return head;
+    
+}
+
+bool isPresent(Node* head,int data){
+    if(head == NULL) return false;
+    if(head->data == data) return true;
+    return isPresent(head->next);
+}
+
+
+int length(Node* head){
+    if(head == NULL) return 0;
+    int smallAns = length(head->next);
+    return smallAns+1;
+}
+
+Node* deleteIthNode(Node* head,int i){
+    if(i < 0){
+        return head;
+    }
+    if(i == 0 && head){
+        return head->next;
+    }
+
+    if(i > length(head)){
+        return NULL;
+    }
+
+    int count = 1;
+    Node* copyHead = head;
+    while(count <= i-1 && head){
+        head = head->next;
+        count++;
+    }
+
+    if(head && head->next){
+        Node* temp = head->next;
+        head->next = head->next->next;
+        temp->next = NULL;
+        delete temp;
+    }
+    return copyHead;
+
+}
+
+Node* insertAtIthPos(Node* head,int i,int data){
+    if(i == 0){
+        Node *n = new Node(data);
+        n->next = head;
+        head = n;
+        return head;
+    }
+
+    if(i < 0){
+        return head;
+    }
+
+    if(i > length(head)){
+        return NULL;
+    }
+
+    int count = 1;
+    Node* copyHead = head;
+
+    while(count <= i-1 && head){
+        head = head->next;
+        count++;
+    }
+
+    if(head && head-next){
+        Node* n = new Node(data);
+        Node* temp = head->next;
+        head->next = n;
+        n->next = temp;
+    }
+    return copyHead;
+}
+
+int printIthNode(Node* head,int i){
+    if(i == 0){
+        return head->data;     
+    }
+
+    if(i < 0){
+        return NULL;
+    }
+    if(i > length(head)){
+        return NULL;
+    }
+
+    int count = 1;
+    Node* copyHead = head;
+
+    while(count <= i && head){
+        head = head->next;
+        count++;
+    }
+
+    if(head){
+        return head->data;
+    }
+    return head->data;
+}
+
+Node* insertAtTail(Node*  head){
+    int data;
+    cin>>data;
+    Node* head = NULL;
+    Node* currNode = NULL;
+    while(data != -1){
+        Node* n = new Node(data);
+        if(head == NULL){
+            head = n;
+            currNode = n;
+        }else{
+            n->next = head;
+            head = n;
+        }
+        cin>>data;
+    }
+    return head;
+
+}
+
+Node* insert(Node* head){
+    int data;
+    cin>>data;  
+    Node* head = NULL;
+    Node* currNode = NULL;
+    while(data != -1){
+        Node* n = new Node(data);
+        if(head == NULL){
+            head = n;
+            currNode = n;
+        }else{
+            currNode->next = n;
+            currNode = n;
+        }
+        cin>>data;
+    }
+    return head;
+}
+
+void print(Node* head){
+
+    Node* curr = head;
+    while(curr != NULL){
+        cout<<curr->data<<" ";
+        curr = curr->next;
+    }
+    return ;
+}
+
+[1,3,4,5,2];
+
+class Node{
+
+    public:
+        int data;
+        Node* next;
+
+
+        Node(int data){
+            this->data = data;
+            this->next = NULL;
+        }
+};
+
+bool isPalindrome(Node* head){
+
+    Node* slow = head;
+    Node* fast = head;
+
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    Node* reversed = NULL;
+    while(slow != NULL){
+        Node* n = slow->next;
+        slow->next = reversed;
+        reversed = slow;
+        slow = n;
+    }
+
+    while(reversed != NULL){
+        if(head->val != reversed->val) return false;
+        head = head->next;
+        reversed = reversed->next;
+    }
+
+    return true;
+}
+
+Node* oddEvenList(Node* head){
+
+    Node* even = head->next;
+    Node* odd = head;
+    Node* even_start = head-next;
+
+    while(event->next && odd->next){
+        odd->next = even->next;
+        even->next = odd->next->next;
+
+        odd = odd->next;
+        even = even->next;
+    }
+
+    odd->next = even_start;
+    return head;
+    
+}
+
+
+bool checkIfThereIsCycle(Node* head){
+
+    if(head == NULL && head->next == NULL) return false;
+
+    Node* slow = head,*fast = head;
+
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next;
+
+        if(slow == fast) return true;
+    }
+
+    return false;
+}
+
+Node* returnCycleNode(Node* head){
+
+    Node* slow = head;
+    Node* fast = head;
+
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next;
+
+        if(slow == fast) break;
+    }
+
+    if(!(fast && fast->next)) return NULL;
+
+    while(head != slow){
+        slow = slow->next;
+        head = head->next;
+    }
+
+    return head;
+
+    
+}
+
+
+class LRU{
+    public:
+        
+        map<int,int> mp;
+        list<int> ls;
+        int cp;
+        LRU(int capacity){
+            cp = capacity;
+            ls.clear();
+            mp.clear();
+        }
+
+        int get(int key){
+
+            if(mp.find(key) == mp.end()){
+                return -1;
+            }
+
+            ls.remove(key);
+            ls.push_front(key);
+            return mp[key];
+        }
+
+        void push(int key,int value){
+            if(mp.find(key) == mp.end()){
+                
+                if(cp == ls.size()){
+                    int hel = ls.back();
+                    ls.pop_back();
+                    mp.erase(hel);
+                }
+
+                ls.push_front(key);
+                mp[key] = value;
+
+            }else{
+
+                ls.remove(key);
+                ls.push_front(key);
+                mp[key] = value;
+            }
+        }
+}
+
+TreeNode* rightMost(TreeNode* root){
+    if(root->right == NULL) return root;
+    return rightMost(root->right);
+}
+
+void flatten(TreeNode* root){
+
+    if(root == NULL) return ;
+
+    TreeNode* rightMost = NULL;
+    TreeNode* nextRight = NULL;
+    while(root){
+
+        if(root->left){
+            rightMost = rightMost(root->left);
+            nextRight = root->right;
+            root->right = root->left;
+            root->left = NULL;
+            rightMost->right = nextRight;
+        }
+
+        root = root->right;
+    }
+}
+
+void sortList(Node* head){
+    if(head == NULL) return ;
+
+    int count[] = {0,0,0};
+    Node* ptr = head;
+    while(ptr){
+        count[ptr->data]++;
+        ptr = ptr->next;
+    }
+
+    int i = 0;
+
+    ptr = head;
+    while(ptr){
+        if(count[i] == 0){
+            ++i
+        }else{
+            ptr->data = i;
+            --count[i];
+        }
+        ptr = ptr->next;
+    }
+}
+
+
+Node* mergeTwoList(Node* a,Node* b){
+    if(a == NULL) return b;
+    if(b == NULL) return a;
+
+    Node* newHead = NULL;
+    if(a->val < b->val){
+        newHead = a;
+        newHead->next = mergeTwoList(a->next,b);
+    }else{
+        newHead = b;
+        newHead->next = mergeTwoList(a,b->next);
+    }
+
+    return newHead;
+}
+
+void sortList(Node* head){
+    if(head == NULL || head->next == NULL) return head;
+
+    Node* slow = head;
+    Node* fast = head->next;
+
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    Node* n = slow->next;
+    slow->next = NULL;
+
+    Node* a = sortList(n);
+    Node* b = sortList(head);
+
+    head = mergeTwoList(a,b);
+
+    return head;
+}
+
+bool ifCycle(Node* head){
+
+    if(head == NULL || head->next == NULL) return false;
+
+    Node* slow = head;
+    Node* fast = head;
+
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if(slow == fast) return true;
+    }
+    return false;
+}
+
+
+Node* intersectionPoint(Node* a,Node* b){
+
+    Node* ptr1 = a;
+    Node* ptr2 = b;
+
+    while(ptr1 != ptr2){
+        if(ptr1 == NULL){
+            ptr1 = b;
+        }else{
+            ptr1 = ptr1->next;
+        }
+
+        if(ptr2 == NULL){
+            ptr2 == a;
+        }else{
+            ptr2 = ptr2->next;
+        }
+    }
+    return ptr1;
+}
+
+void reverseList(Node* head){
+
+    Node* prev = NULL;
+    Node* curr = head;
+
+    while(curr){
+        Node* n = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = n;
+    }
+    return prev;
+}
+
+
+bool isPalindrome(Node* head){
+
+    if(head == NULL || head->next == NULL){
+        return true;
+    }
+
+    Node* reversed = NULL;
+    Node* curr = head;
+    while(curr){
+        Node* n = curr->next;
+        curr->next = reversed;
+        prev = curr;
+        curr = n;
+    }
+
+    while(reversed){
+        if(head->val != reversed->val) return false;
+        head = head->next;
+        reversed = reversed->next;
+
+    }
+    return true;
+}
+
+
+Node* odd_even_list(Node* head){
+
+    if(head == NULL || head->next == NULL) return head;
+
+    Node* odd = head;
+    Node* even = head->next;
+    Node* even_start = head->next;
+
+    while(odd->next && even->next){
+        odd->next = even->next;
+        even->next = odd->next->next;
+
+        odd = odd->next;
+        even = even->next;
+    }
+
+    odd->next = even_start;
+    return head;
+}
+
+
+void deleteWithoutHead(Node* node){
+
+    node->val = node->next->val;
+    Node* n = node->next;
+    node->next = node->next->next;
+    n->next = NULL;
+    delete n;
+
+}
+
+class LRU{
+    public :
+        map<int,int> mp;
+        list<int> ls;
+        int cp;
+
+        LRU(int capacity){
+            ls.clear();
+            mp.clear();
+            cp = capacity;
+        }
+
+        int get(int key){
+            if(mp.find(key) == mp.end()){
+                return -1;
+            }
+
+            ls.remove(key);
+            ls.push_front(key);
+            return mp[key];
+        }
+
+        void put(int key,int value){
+            if(mp.find(key) == mp.end()){
+
+                if(cp == ls.size()){
+                    int k = ls.back();
+                    ls.pop_back();
+                    mp.erase(k);
+                }
+                ls.push_front(key);
+                mp[key] = value;
+            }else{
+                ls.remove(key);
+                ls.push_front(key);
+                mp[key] = value;
+            }
+        }
+
+        void put(int key,int value){
+
+            if(mp.find(key) == mp.end()){
+
+                if(cp = ls.size()){
+                    int last = ls.back();
+                    ls.pop_back();
+                    mp.erase(back);
+                }
+                ls.push_front(key);
+                mp[key] = value;
+            }else{
+                ls.remove(key);
+                ls.push_front(key);
+                mp[key] = value;
+            }
+        }
+}
+
+
+void removeKthNode(Node* head,int k){
+    Node* first = head;
+    Node* second = head;
+
+    while(k--){
+        second = second->next;
+    }
+
+    if(second == NULL){
+        return first->next;
+    }
+
+    while(second->next != NULL){
+        first = first->next;
+        second = second->next;
+    }
+
+    first->next = first->next->next;
+
+    return head;
+}
+
+
+ListNode* addTwoNumbers(Node* l1,Node* l2){
+
+
+    Node* dummy = new ListNode();
+    Node* temp = dummy;
+
+    int carry = 0;
+    
+    while(l1 || l2 || carry){
+        int sum = 0;
+
+        if(l1){
+            sum += l1->val;
+            l1 = l1->next;
+        }
+
+        if(l2){
+            sum += l2->val;
+            l2 = l2->next;
+        }
+
+        
+        sum += carry;
+        carry = sum/10;
+        Node* n = new Node(sum%10);
+
+        temp->next = n;
+        temp = temp->next;
+    }    
+
+    return dummy->next;
+}
+
+int partition(int arr[],int s,int e){
+    int pivot = arr[e];
+    int j = s;
+    for(int i = s;i < e;i++){
+        if(arr[i] < pivot){
+            swap(arr[j],arr[i]);
+            j++;
+        }
+    }
+    swap(arr[j],arr[e]);
+    return j;
+}
+
+void quickSort(int arr[],int s,int e){
+    if(s >= e){
+        return ;
+    }
+
+    int p = partition(arr,s,e);
+    quickSort(arr,s,p-1);
+    quickSort(arr,p+1,e);
+}
+
+
+int partition(int arr[],int s,int e){
+    if(s >= e){
+        return ; 
+    }
+    int j = s;
+    int pivot = arr[e];
+    for(int i = s;i < e;i++){
+        if(arr[i] < pivot){
+            swap(arr[i],arr[j]);
+            j++;
+        }
+    }
+
+    swap(arr[e],arr[j]);
+    return j;
+}
+
+void quickSort(int arr[],int s,int e){
+    if(s >= e){
+        return ;
+    }
+
+    int p = partition(arr,s,e);
+    quickSort(arr,s,p-1);
+    quickSort(arr,p+1,e);
+}
+
+vector<int> subArraySum(int arr[],int n,int s){
+    int l = 0,r = 0,sum = 0;
+    vector<int> ans;
+    while(r <= n){
+
+        if(sum < s){
+            sum += arr[r++];
+        }else if(sum == s){
+            ans.push_back(l+1);
+            ans.push_back(r);
+            return ans;
+        }else{
+            sum -= arr[l++];
+        }
+    }
+
+    return {-1};
+}
+
+
+int countSubArrayWithGivenSumK(vector<int> &arr, int k){
+    int preSum = 0;
+    map<int,int> mp;
+    mp[0] = 1;
+    int cnt = 0;
+    int n = arr.size();
+
+    for(int i = 0;i < n;i++){
+        preSum += arr[i];
+
+        int remove = preSum - k;
+        cnt += mp[remove];
+
+        mp[preSum] += 1;
+    }
+
+    return cnt;
+    
+}
+
+vector<int> longestSubarrayWithGivenSumK(vector<int> &arr, int k){
+
+    int left = 0;
+    int right = 0;
+    int maxLength = 0;
+    int n = arr.size();
+    int sum = arr[0];
+
+    while(right < n){
+
+        if(left <= right && sum > k){
+            sum -= arr[left];
+            left++;
+        }
+
+        if(sum == k){
+            maxLength = max(maxLength, right-left+1);        
+        }
+
+        right++;
+        if(right < n) sum += arr[right];
+    }
+
+    return maxLength;
+}
+
+
+vector<int> printLeaders(vector<int> &arr){
+    int n = arr.size();
+    int max = arr[n-1];
+    vector<int> ans;
+    ans.push_back(arr[n-1]);
+
+    for(int i = n-2; i >=0;i--){
+        if(arr[i] > max){
+            ans.push_back(arr[i]);
+            max = arr[i];
+        }
+    }
+
+    return ans;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

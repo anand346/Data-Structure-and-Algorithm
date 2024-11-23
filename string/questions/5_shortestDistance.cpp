@@ -22,6 +22,6 @@ int shortestDistance(vector<string> s,string first,string sec){
 }
 int main(){
     vector<string> s = { "the", "quick", "brown", "fox","quick"};
-    int out = shortestDistance(s,"the","fox");
+    int out = shortestDistance(s,"brown","quick");
     cout<<out;
 }

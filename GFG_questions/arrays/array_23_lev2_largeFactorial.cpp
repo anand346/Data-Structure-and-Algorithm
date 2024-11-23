@@ -64,7 +64,7 @@ class Solution{
 int main(){
     Solution a ;
     vector<int> ans;
-    ans = a.factorial(20);
+    ans = a.factorial(5);
     for(int i = 0;i < ans.size();i++){
         cout<<ans[i];
     }

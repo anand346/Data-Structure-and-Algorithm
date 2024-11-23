@@ -1,0 +1,28 @@
+largest element in an array
+second largest element in an array
+check if array is sorted
+remove duplicate from sorted array
+left rotate an array by one place
+left rotate an array by K places
+move zero to end
+linear search
+find the union
+find missing number in an array
+maximum consecutive ones
+find the number that appears once
+longest subarray with given sum k (positive)
+longest subarray with given sum k (positive & negative)
+2sum problem
+sort an array of 0's 1's 2's
+majority element
+kadane's algo
+print subarray with maximum subarray sum
+stock buy and sell
+rearrange the array in alternating position
+next permutation
+leaders in an array
+longest consecutive sequence in an array
+set matrix zeros
+rotate matrix by 90 degrees
+print the matrix in spiral manner
+count subarrays with given sum

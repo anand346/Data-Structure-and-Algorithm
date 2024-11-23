@@ -27,8 +27,8 @@ class Solution{
                 }else{
                     ptr->data = i;
                     --count[i];
-                    ptr = ptr->next;
                 }
+                ptr = ptr->next;
             }
         }
 }

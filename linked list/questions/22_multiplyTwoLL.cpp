@@ -19,6 +19,6 @@ class Solution{
                 }
             }
 
-            return l1*l2;
+            return num1*num2;
         }
 }

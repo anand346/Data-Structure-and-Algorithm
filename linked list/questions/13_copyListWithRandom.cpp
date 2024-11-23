@@ -1,6 +1,25 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* next;
+    Node* random;
+    
+    Node(int _val) {
+        val = _val;
+        next = NULL;
+        random = NULL;
+    }
+};
+*/
+
+// https://www.youtube.com/watch?v=ctFmFbeyTVU
+
 class Solution{
 
     public : 

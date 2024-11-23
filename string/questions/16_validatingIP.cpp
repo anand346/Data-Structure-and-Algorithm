@@ -11,7 +11,7 @@ bool isValid(string str){
             counter++;
         }
     }
-    if(count != 3){
+    if(counter != 3){
         return false;
     }
 

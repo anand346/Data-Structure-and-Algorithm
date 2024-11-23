@@ -1,0 +1,13 @@
+If array is sorted or not 
+Remove duplicates from array 
+Move zeros to end 
+Two sum 
+Stock and buy
+Majority element
+Set matrix zero
+Spiral matrix 
+Longest consecutive in an array 
+Sort 0,1,2
+
+oops
+diff between virtual function and friend function

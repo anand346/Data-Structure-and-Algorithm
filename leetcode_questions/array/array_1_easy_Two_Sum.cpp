@@ -32,6 +32,25 @@ vector<int> twoSum(vector<int> &nums,int target){
     return result;
 }
 
+string twoSum1(vector<int> &nums,int target){
+    sort(nums.begin(),nums.end());
+    int n = nums.size();
+    int left = 0,right = n-1;
+
+    while(left < right){
+        int sum = nums[left] + nums[right];
+
+        if(sum == target){
+            return "yes";
+        }else if(sum > target){
+            right--;
+        }else{
+            left++;
+        }
+    }
+    return "No";
+}
+
 int main(){
     vector<int> input = {2,3,6,7,9,1};
     vector<int> result = twoSum(input,16);

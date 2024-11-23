@@ -9,6 +9,8 @@ int countBits(int n){
 
     return (int)log2(n)+1;
     // return (int)log10(n)+1;
+
+    1010101
 }
 
 int main(){

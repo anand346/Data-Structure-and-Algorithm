@@ -1,3 +1,5 @@
+// https://www.geeksforgeeks.org/count-number-of-substrings-with-exactly-k-distinct-characters/
+
 #include<bits/stdc++.h>
 using namespace std;
 long long int solve(string s, int k){

@@ -1,30 +1,26 @@
+// https://youtu.be/ygmnqSHiakQ
+
 #include<bits/stdc++.h>
 using namespace std;
 
 string findAndReplace(string S ,int Q, int index[], string sources[], string targets[]) {
 
-    map<int,string> hash1,hash2;
+    string original = S;
+    int newLength = 0;
     for(int i = 0;i < Q;i++){
-        hash1[index[i]] = sources[i];
-        hash2[index[i]] = targets[i];
-    }
+        auto found = original.find(sources[i]);
 
-    string output = "";
-    int n = S.size();
-
-    for(int i = 0;i < n;i++){
-        if(hash1.find(i) == hash1.end()) output += S[i];
-        else{
-            if(S.compare(i,hash1[i].size(),hash1[i]) == 0){
-                output += hash2[i];
-                i += hash1[i].length()-1;
-            }else{
-                output += S[i];
+        while(found != string::npos){
+            if(found == index[i]){
+                S.replace(found+newLength,sources[i].size(),targets[i]);
+                newLength += targets[i].size()-sources[i].size();
             }
-        }
-    }
 
-    return output;
+            found = original.find(sources[i],found+1);
+        }
+        
+    }
+    return S;
 }
 
 int main(){

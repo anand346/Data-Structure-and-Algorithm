@@ -1,3 +1,5 @@
+// https://practice.geeksforgeeks.org/problems/divisible-by-73224/1#:~:text=Given%20an%20n%2Ddigit%20large,8955795758%20is%20divisible%20by%207.
+
 #include<bits/stdc++.h>
 using namespace std;
 

@@ -11,6 +11,19 @@ int removeDuplicates(vector<int>& a){
     }
     return pos+1;
 }
+
+int removeDuplicates(int arr[], int n)
+{
+  int i = 0;
+  for (int j = 1; j < n; j++) {
+    if (arr[i] != arr[j]) {
+      i++;
+      arr[i] = arr[j];
+    }
+  }
+  return i + 1;
+}
+
 int main(){
     vector<int> a = {1,2,2,2,3,3,3,4,5,6,6}; //sorted
     int newSize = removeDuplicates(a);

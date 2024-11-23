@@ -6,15 +6,15 @@ using namespace std;
 
 int solveRec(vector<int> &num,int target){
     // base case
-    if(x == 0){
+    if(target == 0){
         return 0;
     }
-    if(x < 0){
+    if(target < 0){
         return INT_MAX;
     }
     int mini = INT_MAX;
     for(int i = 0; i < num.size();i++){
-        int ans = solve(num,target-num[i]);
+        int ans = solveRec(num,target-num[i]);
         if(ans != INT_MAX){
             mini = min(mini,ans+1);
         }
