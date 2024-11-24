@@ -7,7 +7,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
- bool checkSubsequenceSum(int n, vector<int>& arr, int k) {
+ bool checkSubsequenceSum1(int n, vector<int>& arr, int k) {
     // Code here
     
     if(k == 0){
@@ -18,14 +18,14 @@ using namespace std;
         return false;
     }
     
-    bool include = checkSubsequenceSum(n-1,arr,k-arr[n]);
-    bool exclude = checkSubsequenceSum(n-1,arr,k);
+    bool include = checkSubsequenceSum1(n-1,arr,k-arr[n]);
+    bool exclude = checkSubsequenceSum1(n-1,arr,k);
     
     return include || exclude;
 }
 
 // optimized approach
-bool helper(int n,vector<int>&arr,int k , auto &lookup){
+bool helper(int n,vector<int>&arr,int k , unordered_map<string,bool> &lookup){
     if(k == 0){
         return true;
     }
@@ -53,5 +53,17 @@ bool helper(int n,vector<int>&arr,int k , auto &lookup){
     return helper(n-1,arr,k,lookup);
 }
 int main(){
-
+    vector<int> A = { 7, 3, 2, 5, 8 };
+    int k = 22;
+ 
+    // total number of items
+    int n = A.size();
+ 
+    if (checkSubsequenceSum(n, A, k)) {
+        cout << "Subsequence with the given sum exists";
+    }else {
+        cout << "Subsequence with the given sum does not exist";
+    }
+ 
+    return 0;
 }

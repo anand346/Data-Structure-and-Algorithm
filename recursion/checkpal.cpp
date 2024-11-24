@@ -16,5 +16,5 @@ bool checkPal(char str[],int s,int e){
 int main(){
 
     char str[] = "aabaa";
-    cout<<checkPal(str,0,5);
+    cout<<checkPal(str,0,4)<<endl;
 }
