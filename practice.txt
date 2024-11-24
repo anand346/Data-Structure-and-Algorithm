@@ -20108,25 +20108,164 @@ vector<int> printLeaders(vector<int> &arr){
 }
 
 
+bool checkPal(char str[], int s, int e){
+    if(s >= e){
+        return true;
+    }
+
+    if(str[s] == str[e]){
+        return checkPal(str, s+1, e-1);
+    }else{
+        return false;
+    }
+}
+
+
+bool helper(int n, vector<int> &arr, int k, unordered_map<string, bool> &lookup){
+    if(k == 0){
+        return true;
+    }
+
+    if(n < 0 || k < 0){
+        return false;
+    }
+
+    string key = to_string(n) + "|" + to_string(k);
+
+    if(lookup.find(key) == lookup.end()){
+        bool include = helper(n-1, arr, k-arr[n], lookup);
+        bool exclude = helper(n-1, arr, k, lookup);
+
+        lookup[key] = include || exclude;
+    }
+
+    return lookup[key];
+}
+
+bool checkSubSum(int n, vector<int> arr, int k){
+
+    unordered_map<string, bool> lookup;
+    bool result = helper(n-1, arr, k, lookup);
+    return result;
+}
+
+
+bool checkPal(char str[], int s, int e){
+    if(s > e){
+        return true;
+    }
+    if(str[s] == str[e]){
+        return checkPal(str, s+1, e-1);
+    }
+    return false;
+}
+
+bool helper(int n, vector<int> &arr, int k, unordered_map<string, bool> &lookup){
+
+    if(k == 0){
+        return true;
+    }
+
+    if(n < 0 || k < 0){
+        return false;
+    }
+
+    string key = to_string(n) + "|" + to_string(k);
+
+    if(lookup.find(key) == lookup.end()){
+        bool include = helper(n-1, arr, k-arr[n], lookup);
+        bool exclude = helper(n-1, arr, k, lookup);
+
+        lookup[key] = include || exclude;
+    }
+
+    return lookup[key];
+}
+
+bool checkSubSum(vector<int> &arr, int k){
+
+    int n = arr.size();
+    unordered_map<string,bool> lookup;
+    return helper(n-1, arr, k);
+}
+
+int main(){
+    vector<int> arr = {1, 4, 5, 8 };
+    int k = 13;
+
+    cout<<checkSubSum(arr, k)<<endl;
+}
+
+bool helper(int n, vector<int> &arr, int k, unordered_map<string, bool> &lookup){
+    if(k == 0){
+        return true;
+    }
+    if(n < 0 || k < 0){
+        return false;
+    }
+
+    string key = to_string(n) + "|" + to_string(k);
+
+    if(lookup.find(key) == lookup.end()){
+        bool include = helper(n-1, arr, k-arr[n], lookup);
+        bool exclude = helper(n-1, arr, k, lookup);
+
+        lookup[key] = include || exclude;
+    }
+
+    return lookup[key];
+}
+
+bool checkSubSum(vector<int> &arr, int k){
+
+    unordered_map<string, bool> lookup;
+    int n = arr.size();
+    return helper(n-1, arr, k, lookup);
+}
+
+we will include and exclude a number - yes
+if we want to include a number twice - no
 
 
 
+bool helper(int n, vector<int> &arr, int k, unordered_map<string, bool> &lookup){
+    if(k == 0){
+        return true;
+    }
 
+    if(n < 0  || k < 0){
+        return false;
+    }
 
+    string key = to_string(n) + "|" + to_string(k);
+    if(lookup.find(key) == lookup.end()){
+        bool include = helper(n-1, arr, k-arr[n], lookup);
+        bool exclude = helper(n-1, arr, k, lookup);
 
+        lookup[key] = exclude || include; 
+    }
+    return lookup[key];
+}
 
+bool checkSubSum(vector<int> &arr, int k){
+    unordered_map<string, bool> lookup;
+    int n = arr.size();
+    return helper(n-1, arr, k, lookup);
 
+}
 
+void printPermu(char str[], int i){
+    if(str[i] == '\0'){
+        cout<<str<<endl;
+        return;
+    }
 
-
-
-
-
-
-
-
-
-
+    for(int j=i;str[j] != '\0'; j++){
+        swap(str[i], str[j]);
+        printPermu(str, i+1);
+        swap(str[j],str[i]);
+    }
+}
 
 
 
